@@ -6,7 +6,7 @@ Author: Malte Lehna, Patrick Neff
 Maintainer: Malte Lehna <malte.lehna@stud.uni-goettingen.de>, Patrick Neff <patrick.neff@stud.uni-goettingen.de>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
-License: Georg-August University Goettingen
+License: GPL-2
 Encoding: UTF-8
 URL: http://github.com/pneff93/HMM
 BugReports: http://github.com/pneff93/HMM/issues
