@@ -9,7 +9,16 @@
 #' @param iterations, optional. Number of iterations for the EM-Algorithm
 #' @param delta, optional. Stop criterion for the EM-Algorithm
 #' @return The estimated parameters.
-#' @details Using an EM-Algorithm we have bla formula, backwards, forwards
+#' @details 
+#' This package is designed to estimate the hidden states of a HMM-Model, given the underlyning Likelihoods
+#' of each state. It is important to support at least two Likelyhoods (L1,L2) for the function, which both
+#' depend on a unknown parameter theta. 
+#' 
+#' The HMM-function will use a Baum-Welch estimation algorithm to to compute the different states and the
+#' estimation of the parameter theta. 
+#'
+#' 
+#' 
 #' @export
 #'
 HMM<-function(x, m, L1, L2, L3=NULL, L4=NULL, L5=NULL, iterations=NULL, delta=NULL){
