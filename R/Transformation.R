@@ -1,12 +1,35 @@
-#Due to our single optimation problem we have to build constrains for Gamma, Sigma and 
-# maybe even lambda
-#to tackle this problem we let the factors unconstrained and implement the constrains within
-#the function. After optimization we then rebuild the constrains
+#' Transformation function - DM
+#' 
+#' @description Due to our single optimation problem we have to build constrains for Gamma and
+#' Sigma to fullfill the requirements of probabilties. 
 
-#############
-#Der Factor ist ein Vector, die alle drei variablen collumwise gestapelt besitzt.
-#also cbind(sigma,gamma,theta), wobei theta die einzelenen Faktoren der Likelihoods 
-#als Vektor sind. die Dimensionen 1x (m+m*m+m)
+#' 
+#' @param factor see details
+#' @param m number of Likelihoods 
+#' 
+#' @details In the direct maximisation the nlme()- minimisation function can not directly implement
+#' the constrains of the parameter values. This function ensures that the the estimated parameters 
+#' of the direct optimisation still fullfill their requirements. These are that the probabilities are
+#' between zero and one and that the rows of gamma (as well as sigma) sum up to one.
+#' For this transformation the probit model is used. 
+#' 
+#' Thus with the input factor containing the elements that determine Sigma and Gamma we need 
+#' the following number of elements for each parameter:
+#' 
+#' Sigma vector (1 x m)  - (m-1)  elements required
+#' Gamma matrix (m x m)  - m(m-1) elements required
+#' Theta vector (1 x m)  - m      elements required
+#' 
+#' By this defintion the input factor vector has to contain the elements for Sigma, Gamma and Theta
+#' in that order and has to have the dimension: (m+1)(m-1) + m
+#' 
+#'
+#' 
+#' @return returns a matrix with the sigma,Gamma and theta matrix bound together (collumn wise)
+#' 
+#' 
+
+
 
 trans <- function (factor,m){
   # Building the constrains: 
