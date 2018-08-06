@@ -3,7 +3,7 @@
 #' by using an EM-Algorithm
 #' @param x, a sample of a Mixed Model
 #' @param m, the number of states
-#' @param methode, choose between two different methodes: "DM" as default, alternative "EM"
+#' @param method, choose between two different methods: "DM" as default, alternative "EM"
 #' @param L1, likelihood of the first hidden state
 #' @param L2, likelihood of the second hidden state
 #' @param L3-L5, optional. likelihoods of the third, 4th and 5th hidden state
@@ -15,7 +15,7 @@
 #' of each state. It is important to support at least two Likelyhoods (L1,L2) for the function, which both
 #' depend on a unknown parameter theta. 
 #' 
-#' In the methode parameter the underlying estimation function is selected. With DM the HMM-function will
+#' In the method parameter the underlying estimation function is selected. With DM the HMM-function will
 #' estimate the parameters via a direct maximisation of the given Likelihoods.
 #' If EM is selected the HMM-function will use a Baum-Welch estimation algorithm to to compute the different states and the
 #' estimation of the underlying parameters. 
@@ -28,16 +28,16 @@
 #' 
 #' @export
 #'
-HMM<-function(x, m,methode="DM", L1, L2, L3=NULL, L4=NULL, L5=NULL, iterations=NULL, delta=NULL){
+HMM<-function(x, m,method="DM", L1, L2, L3=NULL, L4=NULL, L5=NULL, iterations=NULL, delta=NULL){
 
-#This is the head function, which seperates between the methodes: 
-  if (methode == "DM"){
+#This is the head function, which seperates between the methods: 
+  if (method == "DM"){
     output <- HMM3(x=x, m=m, L1=L1, L2=L2,L3=L3,L4=L4,L5=L5)
-  } else if (methode == "EM"){
+    return(output)
+  } else if (method == "EM"){
     output <- HMM2(x=x, m=m, L1=L1, L2=L2, L3=L3, L4=L4, L5=L5, iterations=iterations, delta=delta)
-  }else {
-    warning("The supplied methode is not available in the HMM function. Chooose between DM or EM", call. = TRUE)
+    return(output)
+    }else {
+    warning("The supplied method is not available in the HMM function. Chooose between DM or EM", call. = TRUE)
   }
-
-return(output)
 }
