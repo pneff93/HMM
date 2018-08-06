@@ -11,4 +11,4 @@ Encoding: UTF-8
 URL: http://github.com/pneff93/HMM
 BugReports: http://github.com/pneff93/HMM/issues
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
