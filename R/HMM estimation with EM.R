@@ -113,18 +113,22 @@ while (delta>d && q<z){
   sigma<-sigma_hat
   
   
-  alpha<-alpha_function( m, N, sigma, Gamma, p, set)
-  beta<-beta_function( m, N, Gamma, p, set )
+  out<-alpha_function( m, N, sigma, Gamma, p, set)
+  alpha <- out[[1]]
+  weight <- out[[2]]
+  
+  beta<-beta_function( m, N, Gamma, p, set, c= weight )
   
   
   #Likelihood of the forward & backward probability
-  L<-alpha[1,]%*%beta[,1]
+  #L<-alpha[1,]%*%beta[,1]
   
   
   
     
-  u<-u_function(m, N, alpha, beta, L)
-  v<-v_function(m, N, alpha, beta, p, L, Gamma, set)
+  u<-u_function(m, N, alpha, beta)
+  
+  v<-v_function(m, N,beta, p,c=weight, Gamma, set, u = u)
   
   #Einsetzen in die dreier Likelihood solutions
   sigma_hat<-sigma_hat<-u[1,]
@@ -159,7 +163,7 @@ while (delta>d && q<z){
   delta<-max(delta1, delta2, delta3)
   
 }
-AIC<--2*log(L)+2*(m+m*m+m)
+#AIC<--2*log(L)+2*(m+m*m+m)
 
 return<-list( "method of estimation:" = "Maximisation via the EM-Algorithm", sigma=round(sigma_hat,3), Gamma=round(Gamma_hat,3), theta=round(theta_hat, 3), iterations=q, delta=delta, AIC=AIC)
 
