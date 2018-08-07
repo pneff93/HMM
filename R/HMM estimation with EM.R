@@ -1,4 +1,4 @@
-#' Fitting a Hidden Markov Model via the direct maximisation
+#' Fitting a Hidden Markov Model via Expectation-Maximisation algorithm
 #'
 #' @description Estimation of the transition probabilites, the initial state probabilites and the hidden state parameters of a Hidden Markov Model
 #' by using the Baum-Welch Algorithm.
