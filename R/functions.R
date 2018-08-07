@@ -38,6 +38,6 @@ HMM<-function(x, m,method="DM", L1, L2, L3=NULL, L4=NULL, L5=NULL, iterations=NU
     output <- HMM2(x=x, m=m, L1=L1, L2=L2, L3=L3, L4=L4, L5=L5, iterations=iterations, delta=delta)
     return(output)
     }else {
-    warning("The supplied method is not available in the HMM function. Chooose between \"DM\" or \"EM\".", call. = TRUE)
+    warning("The supplied method is not available in the HMM function. Chooose between \"DM\" or \"EM\".", call. = T)
   }
 }

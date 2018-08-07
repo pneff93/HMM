@@ -12,3 +12,4 @@ URL: http://github.com/pneff93/HMM
 BugReports: http://github.com/pneff93/HMM/issues
 LazyData: true
 RoxygenNote: 6.1.0
+Suggests: testthat
