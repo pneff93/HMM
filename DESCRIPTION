@@ -4,8 +4,11 @@ Title: Fitting a Hidden Markov Model
 Version: 0.1.0
 Author: Malte Lehna, Patrick Neff
 Maintainer: Malte Lehna <malte.lehna@stud.uni-goettingen.de>, Patrick Neff <patrick.neff@stud.uni-goettingen.de>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: This package is designed to estimate the hidden states of a HMM-Model, given the underlying likelihoods
+of each state. For estimation of the parameters either a Direct Maximisation or an Expecatation-Maximisation Algorithm
+can be chosen.
+For more detailed explanation of both methods we highly recommend the source Hidden Markov Models for Times Series
+by Walter Zucchini, Iain MacDonald & Roland Langrock.
 License: GPL-2
 Encoding: UTF-8
 URL: http://github.com/pneff93/HMM

@@ -2,3 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+<<<<<<< HEAD
+.Rbuildignore
+=======
+>>>>>>> 6cb42f8aa98c8a0c6c325c51c150638fe6cc4a04
