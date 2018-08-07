@@ -7,9 +7,8 @@
 #' 
 #' @param m number of Likelihoods
 #' @param N length of the supplied dataset
-#' @param alpha alpha matrix 
 #' @param beta beta matrix 
-#' @param L Likelihood of alpha*beta'
+#' @param u output matrix of the u_function
 #' @param Gamma Gamma matrix 
 #' @param p vector of Likelihood probabilities of dataset
 #' @param set index vector to align the p vector 
@@ -23,21 +22,27 @@
 
 
 
-v_function<-function( m, N, alpha, beta, p, L, Gamma, set){
-
+v_function<-function( m, N, beta, p, c, Gamma, set,u){
+  
+  
   v<-matrix(,nrow=0, ncol=m*m)
   out<-matrix(, nrow=m, ncol=m)
-
+  
   for (t in 2:N){
     pp<-diag(c(p[set+t-1]))
-
-    for (j in 1:m){
-      for (k in 1:m){
-        out[j,k]<-alpha[t-1,j]*Gamma[j,k]*pp[k,k]*beta[k,t]/L
+    
+    for (i in 1:m){
+      for(j in 1:m){
+        out[i,j] <- (u[t-1,i]*Gamma[i,j]*pp[j,j]*beta[i,t])/(beta[i,t-1]*c[t-1])
+        
       }
     }
     v<-c(v, c(t(out)))
+    
+    
+    
   }
   v<-matrix(v, nrow = N-1, byrow = N)
-  return(v)
+  
+  return((v))
 }
