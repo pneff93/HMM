@@ -1,3 +1,8 @@
+##RESULTS:
+#Both methods need a long time to estimate the parameters
+#However the results are not satisfying
+
+
 #transition matrix
 gamma<-matrix(c(0.2,0.1,0.4,0.15,0.15,
                 0.1,0.1,0.01,0.5,0.29,
@@ -90,5 +95,5 @@ L5<-function(x, lambda){
 m<-5
 
 HMM(x=x,m=m,method="EM",L1=L1,L2=L2,L3=L3,L4=L4,L5=L5)
-HMM(x=x,m=m,method="DM",L1=L1,L2=L2,L3=L3,L4=L4,L5=L5)
+#HMM(x=x,m=m,method="DM",L1=L1,L2=L2,L3=L3,L4=L4,L5=L5)
 

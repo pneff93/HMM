@@ -1,3 +1,8 @@
+##RESULTS:
+#Both methods estimate the parameters with high speed and accurately
+
+
+
 #transition matrix
 gamma<-matrix(c(0.8,0.2,0.3,0.7), byrow=T, nrow=2)
 
