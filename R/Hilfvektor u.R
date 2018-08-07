@@ -1,4 +1,4 @@
-#' normalized u-function
+#' Normalized u-function
 #'
 #' @description This function calculates the u-function which is part of the estimation step.
 #' Each element in u aligns with the conditional expectation to
@@ -12,7 +12,7 @@
 #' @param beta normalized beta matrix
 #'
 
-#' @return returns the coresponding normalized u's
+#' @return returns the corresponding normalized u's
 #'
 
 

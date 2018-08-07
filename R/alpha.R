@@ -1,16 +1,16 @@
 #' Normalized Forward Probability function
 #'
-#' @description This function calculates the normailzed forward probability of the HMM states.
+#' @description This function calculates the normalized forward probability of the HMM states.
 #' The probabilities are implemented by calculating first the forward probabilities of each step and
 #' then they are weighted such that the sum of probabilities are equal to one. This procedure is done to prevent
 #' the threat of underflow. In the general literatur the forward probabilities are also
-#'  revered to as alpha matrix.
+#' revered to as alpha matrix.
 #'
 #' @param m number of likelihoods
 #' @param N length of the supplied dataset
 #' @param sigma sigma vector
 #' @param Gamma Gamma matrix
-#' @param p vector of likelihood probabilities of dataset
+#' @param p vector of likelihood probabilities of the dataset
 #' @param set index vector to align the p vector
 #'
 #' @return Returns a list of parameters. The first list are the normalised alphas as a matrix with the dimension m as columns

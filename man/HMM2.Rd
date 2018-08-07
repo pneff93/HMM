@@ -4,8 +4,8 @@
 \alias{HMM2}
 \title{Fitting a Hidden Markov Model via Expectation-Maximisation algorithm}
 \usage{
-HMM2(x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL, iterations = NULL,
-  delta = NULL)
+HMM2(x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
+  iterations = NULL, delta = NULL)
 }
 \arguments{
 \item{x, }{a sample of a Mixed Model}

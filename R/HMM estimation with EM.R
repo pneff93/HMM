@@ -1,19 +1,21 @@
-#' Fitting a Hidden Markov Model via Expectation-Maximisation algorithm
+#' Fitting a Hidden Markov Model via Expectation-Maximisation Algorithm
 #'
 #' @description Estimation of the transition probabilites, the initial state probabilites and the hidden state parameters of a Hidden Markov Model
 #' by using the Baum-Welch Algorithm.
 #'
-#' @param x, a sample of a Mixed Model
-#' @param m, the number of states
-#' @param L1, likelihood of the first hidden state
-#' @param L2, likelihood of the second hidden state
-#' @param L3-L5, optional. likelihoods of the third, 4th and 5th hidden state
-#' @param iterations, optional. Number of iterations for the EM-Algorithm
-#' @param delta, optional. Stop criterion for the EM-Algorithm
+#' @param x a sample of a Mixed Model
+#' @param m the number of states
+#' @param L1 likelihood of the first hidden state
+#' @param L2 likelihood of the second hidden state
+#' @param L3 optional. likelihoods of the third hidden state
+#' @param L4 optional. likelihoods of the 4th hidden state
+#' @param L5 optional. likelihoods of the 5th hidden state
+#' @param iterations, optional. number of iterations for the EM-Algorithm
+#' @param delta, optional. stop criterion for the EM-Algorithm
 #'
 #' @return The estimated parameters are rounded by 3 decimals and returned in a list.
 #' @details This function estimates the hidden states of the Hidden Markov Model with the
-#' help of the Baum Welch algorithm. The function iterativly applies both estimation and
+#' help of the Baum Welch algorithm. The function iteratively applies both estimation and
 #' maximisation steps to arrive at the predicted parameters. When the maximum difference between
 #' the functions is abitrarily small (see delta) the iteration stops.
 #'
@@ -36,7 +38,7 @@ sigma_hat<-matrix(, nrow = m)
 sigma_hat[,]<-1/m
 
 
-#sample length
+#sample size
 N<-length(x)
 
 #likelihoods
@@ -58,11 +60,11 @@ if(!is.null(L5)){
 }
 
 
-#We define a treshold of the length of x for every likelihood
+#We define a treshold of the sample size for every likelihood
 set<-seq(1, length(p)-N+1, length.out = m)
 
 
-#while parameters
+#while-loop parameters
 if(is.null(iterations)){
   z<-500
 } else {
@@ -151,7 +153,7 @@ while (delta>d && q<z){
 
 }
 
-return<-list( "method of estimation:" = "maximisation via the EM-Algorithm",
+return<-list( "method of estimation:" = "Maximisation via EM-Algorithm",
               Sigma=round(sigma_hat,3),
               Gamma=round(Gamma_hat,3),
               Theta=round(theta_hat, 3),

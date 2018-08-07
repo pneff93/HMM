@@ -1,19 +1,21 @@
-#' Fitting a Hidden Markov Model via the direct maximisation
+#' Fitting a Hidden Markov Model via the Direct Maximisation
 #'
 #' @description Estimation of the transition probabilites, the initial state probabilites and the hidden state parameters of a Hidden Markov Model
-#' by using the direct Maximisation of the likelihoods.
+#' by using the Direct Maximisation of the likelihoods.
 #'
 #'
-#' @param x, a sample of a Mixed Model
-#' @param m, the number of states
-#' @param L1, likelihood of the first hidden state
-#' @param L2, likelihood of the second hidden state
-#' @param L3-L5, optional. likelihoods of the third, 4th and 5th hidden state
+#' @param x a sample of a Mixed Model
+#' @param m the number of states
+#' @param L1 likelihood of the first hidden state
+#' @param L2 likelihood of the second hidden state
+#' @param L3 optional. likelihoods of the third hidden state
+#' @param L4 optional. likelihoods of the 4th hidden state
+#' @param L5 optional. likelihoods of the 5th hidden state
 #'
 #' @return The estimated parameters are rounded by 3 decimals and returned in a list.
 #' @details This function estimates the Hidden Markov states by maximising the normalized log-likelihood
 #' of the forward propabilities. Due to the fact that bot the Gamma-matrix as well as the Sigma-matrix
-#' have some constrains, the function includes the restrictions within the function.
+#' have some constraints, the function includes the restrictions within the function.
 #'
 
 
@@ -104,7 +106,7 @@ HMM3<-function(x, m, L1, L2,L3,L4,L5){
   #Transform the maximized values to our Gamma/Sigma/Theta and return the output
    out <- trans(factor_out,m)
    final <- list(
-        "method of estimation:" = "direct maximisation of the likelihoods",
+        "method of estimation:" = "Direct Maximisation of the likelihoods",
         Sigma = round( out[,1],3),
         Gamma= round(out[,c(-1,-ncol(out))],3),
         Theta = round( out[,ncol(out)],3))
