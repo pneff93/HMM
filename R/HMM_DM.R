@@ -106,7 +106,7 @@ HMM3<-function(x, m, L1, L2,L3,L4,L5){
   #Transform the maximized values to our Gamma/Sigma/Theta and return the output
    out <- trans(factor_out,m)
    final <- list(
-        "method of estimation:" = "Direct Maximisation of the likelihoods",
+        "Method of estimation:" = "Direct Maximisation of the likelihoods",
         Sigma = round( out[,1],3),
         Gamma= round(out[,c(-1,-ncol(out))],3),
         Theta = round( out[,ncol(out)],3))

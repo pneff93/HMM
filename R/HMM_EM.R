@@ -153,7 +153,7 @@ while (delta>d && q<z){
 
 }
 
-return<-list( "method of estimation:" = "Maximisation via EM-Algorithm",
+return<-list( "Method of estimation:" = "Maximisation via EM-Algorithm",
               Sigma=round(sigma_hat,3),
               Gamma=round(Gamma_hat,3),
               Theta=round(theta_hat, 3),
