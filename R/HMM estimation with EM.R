@@ -78,7 +78,7 @@ if(is.null(iterations)){
 }
 
 if(is.null(delta)){
-  d<-0.01
+  d<-0.0001
 } else {
   d<-delta
 }

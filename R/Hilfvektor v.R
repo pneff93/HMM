@@ -45,5 +45,5 @@ v_function<-function( m, N, beta, p, c, Gamma, set,u){
   }
   v<-matrix(v, nrow = N-1, byrow = N)
   
-  return((v))
+  return(v)
 }

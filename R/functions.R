@@ -1,6 +1,6 @@
 #' Fitting a Hidden Markov Model
 #' @description Estimation of the transition probabilites, the initial state probabilites and the hidden state parameters of a Hidden Markov Model
-#' by using an EM-Algorithm
+#' by using the Direct Maximisation of the Likelihood or the EM-Algorithm
 #' @param x, a sample of a Mixed Model
 #' @param m, the number of states
 #' @param method, choose between two different methods: "DM" as default, alternative "EM"
@@ -38,6 +38,6 @@ HMM<-function(x, m,method="DM", L1, L2, L3=NULL, L4=NULL, L5=NULL, iterations=NU
     output <- HMM2(x=x, m=m, L1=L1, L2=L2, L3=L3, L4=L4, L5=L5, iterations=iterations, delta=delta)
     return(output)
     }else {
-    warning("The supplied method is not available in the HMM function. Chooose between DM or EM", call. = TRUE)
+    warning("The supplied method is not available in the HMM function. Chooose between \"DM\" or \"EM\".", call. = TRUE)
   }
 }

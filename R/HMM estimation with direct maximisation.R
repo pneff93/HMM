@@ -37,7 +37,6 @@ HMM3<-function(x, m, L1, L2,L3,L4,L5){
     
     
     #Likelihoods
-    #Likelihoods
     p1<-L1(x, theta[1])
     p2<-L2(x, theta[2])
     p<-c(p1,p2)
