@@ -1,4 +1,4 @@
-context("HMM Test control")
+context("HMM3 Test control")
 
 test_that("")
 
