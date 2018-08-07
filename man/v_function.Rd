@@ -4,32 +4,31 @@
 \alias{v_function}
 \title{v-function}
 \usage{
-v_function(m, N, alpha, beta, p, L, Gamma, set)
+v_function(m, N, beta, p, c, Gamma, set, u)
 }
 \arguments{
-\item{m}{number of Likelihoods}
+\item{m}{number of likelihoods}
 
 \item{N}{length of the supplied dataset}
 
-\item{alpha}{alpha matrix}
-
 \item{beta}{beta matrix}
 
-\item{p}{vector of Likelihood probabilities of dataset}
-
-\item{L}{Likelihood of alpha*beta'}
+\item{p}{vector of likelihood probabilities of dataset}
 
 \item{Gamma}{Gamma matrix}
 
 \item{set}{index vector to align the p vector}
+
+\item{u}{output matrix of the u_function}
 }
 \value{
 returns the coresponding values BUT due to further calculation steps
-the m x m matrix of v-values for each datapoint t is 
+the m x m matrix of v-values for each datapoint t is
 is returned as one row in the output matrix.
 }
 \description{
-This function calculates the v-function which is part of the estimation step. 
-Each element in v aligns with the conditional expectation to 
-reach state k from the previous state j given your datapoint x(t)
+This function calculates the v-function which is part of the estimation step.
+Each element in v aligns with the conditional expectation to reach state k from the previous
+state j given your datapoint x(t). Due to the normalizing of the factors we also need to include
+the corresponding weights into our function.
 }

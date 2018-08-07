@@ -2,26 +2,25 @@
 % Please edit documentation in R/Hilfvektor u.R
 \name{u_function}
 \alias{u_function}
-\title{u-function}
+\title{normalized u-function}
 \usage{
-u_function(m, N, alpha, beta, L)
+u_function(m, N, alpha, beta)
 }
 \arguments{
-\item{m}{number of Likelihoods}
+\item{m}{number of likelihoods}
 
 \item{N}{length of the supplied dataset}
 
-\item{alpha}{alpha matrix}
+\item{alpha}{normalized alpha matrix}
 
-\item{beta}{beta matrix}
-
-\item{L}{Likelihood of alpha*beta'}
+\item{beta}{normalized beta matrix}
 }
 \value{
-returns the coresponding u's
+returns the coresponding normalized u's
 }
 \description{
-This function calculates the u-function which is part of the estimation step. 
-Each element in u aligns with the conditional expectation to 
-reach state j given your datapoint x(t)
+This function calculates the u-function which is part of the estimation step.
+Each element in u aligns with the conditional expectation to
+reach state j given your datapoint x(t). The corresponding weights are already included in the
+alpha and beta values.
 }

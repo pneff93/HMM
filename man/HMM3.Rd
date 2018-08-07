@@ -22,10 +22,10 @@ The estimated parameters are rounded by 3 decimals and returned in a list.
 }
 \description{
 Estimation of the transition probabilites, the initial state probabilites and the hidden state parameters of a Hidden Markov Model
-by using the direct Maximisation of the Likelihoods
+by using the direct Maximisation of the likelihoods.
 }
 \details{
-This function estimates the Hidden Markov states by maximising the normalized Log-Likelihood
-of the forward propabilities. Due to the fact that bot the Gamma-matrix as well as the Sigma-matrix 
+This function estimates the Hidden Markov states by maximising the normalized log-likelihood
+of the forward propabilities. Due to the fact that bot the Gamma-matrix as well as the Sigma-matrix
 have some constrains, the function includes the restrictions within the function.
 }

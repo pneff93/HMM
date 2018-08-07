@@ -4,7 +4,7 @@
 \alias{HMM}
 \title{Fitting a Hidden Markov Model}
 \usage{
-HMM(x, m, methode = "DM", L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
+HMM(x, m, method = "DM", L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
   iterations = NULL, delta = NULL)
 }
 \arguments{
@@ -12,7 +12,7 @@ HMM(x, m, methode = "DM", L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
 
 \item{m, }{the number of states}
 
-\item{methode, }{choose between two different methodes: "DM" as default, alternative "EM"}
+\item{method, }{choose between two different methods: "DM" as default, alternative "EM"}
 
 \item{L1, }{likelihood of the first hidden state}
 
@@ -29,20 +29,20 @@ The estimated parameters are rounded by 3 decimals and returned in a list.
 }
 \description{
 Estimation of the transition probabilites, the initial state probabilites and the hidden state parameters of a Hidden Markov Model
-by using an EM-Algorithm
+by using the Direct Maximisation of the likelihood or the EM-Algorithm.
 }
 \details{
-This package is designed to estimate the hidden states of a HMM-Model, given the underlyning Likelihoods
-of each state. It is important to support at least two Likelyhoods (L1,L2) for the function, which both
-depend on a unknown parameter theta. 
+This package is designed to estimate the hidden states of a HMM-Model, given the underlying likelihoods
+of each state. It is important to support at least two likelihoods (L1, L2) for the function, which both
+depend on an unknown parameter theta.
 
-In the methode parameter the underlying estimation function is selected. With DM the HMM-function will
-estimate the parameters via a direct maximisation of the given Likelihoods.
+In the method parameter the underlying estimation function is selected. With DM the HMM-function will
+estimate the parameters via a direct maximisation of the given likelihoods.
 If EM is selected the HMM-function will use a Baum-Welch estimation algorithm to to compute the different states and the
-estimation of the underlying parameters. 
+estimation of the underlying parameters.
 
-For more detailed explenation we recomend the source Hidden Markov Models for Times Series 
-by Walter Zucchini, Iain MacDonald & Roland Langrock
+For more detailed explanation we recommend the source Hidden Markov Models for Times Series
+by Walter Zucchini, Iain MacDonald & Roland Langrock.
 
 
 The underlying functions are the HMM2 for the EM-algorithm and the HMM3 for the direct Maximisation

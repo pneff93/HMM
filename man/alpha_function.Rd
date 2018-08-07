@@ -2,12 +2,12 @@
 % Please edit documentation in R/alpha.R
 \name{alpha_function}
 \alias{alpha_function}
-\title{Forward Probability function}
+\title{Normalized Forward Probability function}
 \usage{
 alpha_function(m, N, sigma, Gamma, p, set)
 }
 \arguments{
-\item{m}{number of Likelihoods}
+\item{m}{number of likelihoods}
 
 \item{N}{length of the supplied dataset}
 
@@ -15,15 +15,18 @@ alpha_function(m, N, sigma, Gamma, p, set)
 
 \item{Gamma}{Gamma matrix}
 
-\item{p}{vector of Likelihood probabilities of dataset}
+\item{p}{vector of likelihood probabilities of dataset}
 
 \item{set}{index vector to align the p vector}
 }
 \value{
-Returns the alpha as a matrix with the dimension m as columns 
-and the datapoints t as rows
+Returns a list of parameters. The first list are the normalised alphas as a matrix with the dimension m as columns
+and the datapoints t as rows. The second part of the list are the corresponding weights
 }
 \description{
-This function calculates the forward probability of the HMM states. In the general 
-literatur also revered to as alpha matrix
+This function calculates the normailzed forward probability of the HMM states.
+The probabilities are implemented by calculating first the forward probabilities of each step and
+then they are weighted such that the sum of probabilities are equal to one. This procedure is done to prevent
+the threat of underflow. In the general literatur the forward probabilities are also
+ revered to as alpha matrix.
 }

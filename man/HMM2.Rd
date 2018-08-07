@@ -2,10 +2,10 @@
 % Please edit documentation in R/HMM estimation with EM.R
 \name{HMM2}
 \alias{HMM2}
-\title{Fitting a Hidden Markov Model via the direct maximisation}
+\title{Fitting a Hidden Markov Model via Expectation-Maximisation algorithm}
 \usage{
-HMM2(x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
-  iterations = NULL, delta = NULL)
+HMM2(x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL, iterations = NULL,
+  delta = NULL)
 }
 \arguments{
 \item{x, }{a sample of a Mixed Model}
@@ -27,11 +27,11 @@ The estimated parameters are rounded by 3 decimals and returned in a list.
 }
 \description{
 Estimation of the transition probabilites, the initial state probabilites and the hidden state parameters of a Hidden Markov Model
-by using the Baum-Welch Algorithm
+by using the Baum-Welch Algorithm.
 }
 \details{
-This function estimates the hidden states of the Hidden Markov Model with the 
-help of the Baum Welch algorithm. The function iterativly applies both estimation and 
+This function estimates the hidden states of the Hidden Markov Model with the
+help of the Baum Welch algorithm. The function iterativly applies both estimation and
 maximisation steps to arrive at the predicted parameters. When the maximum difference between
 the functions is abitrarily small (see delta) the iteration stops.
 }

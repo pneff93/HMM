@@ -2,26 +2,29 @@
 % Please edit documentation in R/beta.R
 \name{beta_function}
 \alias{beta_function}
-\title{Backward Probability function}
+\title{Normalized Backward Probability function}
 \usage{
-beta_function(m, N, Gamma, p, set)
+beta_function(m, N, Gamma, p, set, c)
 }
 \arguments{
-\item{m}{number of Likelihoods}
+\item{m}{number of likelihoods}
 
 \item{N}{length of the supplied dataset}
 
 \item{Gamma}{Gamma matrix}
 
-\item{p}{vector of Likelihood probabilities of dataset}
+\item{p}{vector of likelihood probabilities of dataset}
 
 \item{set}{index vector to align the p vector}
+
+\item{c}{weights provided by the alpha calculation}
 }
 \value{
 Returns the beta as a matrix with the dimensions m rows
-and the datapoints t as collumns
+and the datapoints t as columns.
 }
 \description{
-This function calculates the backward probability of the HMM states. In the general 
-literatur also revered to as beta matrix
+This function calculates the normalized backward probability of the HMM states. It is important
+to recall, that the provided weights come from the calculation of the forward probabilities one step ahead
+In the general literatur also revered to as beta matrix
 }
