@@ -8,24 +8,28 @@ HMM(x, m, method = "DM", L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
   iterations = NULL, delta = NULL)
 }
 \arguments{
-\item{x, }{a sample of a Mixed Model}
+\item{x}{a sample of a Mixed Model}
 
-\item{m, }{the number of states}
+\item{m}{the number of states}
 
-\item{method, }{choose between two different methods: "DM" as default, alternative "EM"}
+\item{method}{choose between two different methods: "DM" as default, alternative "EM"}
 
-\item{L1, }{likelihood of the first hidden state}
+\item{L1}{likelihood of the first hidden state}
 
-\item{L2, }{likelihood of the second hidden state}
+\item{L2}{likelihood of the second hidden state}
 
-\item{iterations, }{optional. Number of iterations for the EM-Algorithm}
+\item{L3}{optional. likelihoods of the third hidden state}
 
-\item{delta, }{optional. Stop criterion for the EM-Algorithm}
+\item{L4}{optional. likelihoods of the 4th hidden state}
 
-\item{L3-L5, }{optional. likelihoods of the third, 4th and 5th hidden state}
+\item{L5}{optional. likelihoods of the 5th hidden state}
+
+\item{iterations}{optional. number of iterations for the EM-Algorithm}
+
+\item{delta, }{optional. stop criterion for the EM-Algorithm}
 }
 \value{
-The estimated parameters are rounded by 3 decimals and returned in a list.
+The estimated parameters are rounded by 3 decimals and returned in a list
 }
 \description{
 Estimation of the transition probabilites, the initial state probabilites and the hidden state parameters of a Hidden Markov Model
@@ -34,16 +38,16 @@ by using the Direct Maximisation of the likelihood or the EM-Algorithm.
 \details{
 This package is designed to estimate the hidden states of a HMM-Model, given the underlying likelihoods
 of each state. It is important to support at least two likelihoods (L1, L2) for the function, which both
-depend on an unknown parameter theta.
+depend on one unknown parameter theta.
 
 In the method parameter the underlying estimation function is selected. With DM the HMM-function will
 estimate the parameters via a direct maximisation of the given likelihoods.
-If EM is selected the HMM-function will use a Baum-Welch estimation algorithm to to compute the different states and the
+If EM is selected the HMM-function will use a Baum-Welch estimation algorithm to compute the different states and the
 estimation of the underlying parameters.
 
 For more detailed explanation we recommend the source Hidden Markov Models for Times Series
 by Walter Zucchini, Iain MacDonald & Roland Langrock.
 
 
-The underlying functions are the HMM2 for the EM-algorithm and the HMM3 for the direct Maximisation
+The underlying functions are the HMM2 for the EM-Algorithm and the HMM3 for the Direct Maximisation
 }

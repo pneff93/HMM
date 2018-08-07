@@ -2,30 +2,34 @@
 % Please edit documentation in R/HMM estimation with direct maximisation.R
 \name{HMM3}
 \alias{HMM3}
-\title{Fitting a Hidden Markov Model via the direct maximisation}
+\title{Fitting a Hidden Markov Model via the Direct Maximisation}
 \usage{
 HMM3(x, m, L1, L2, L3, L4, L5)
 }
 \arguments{
-\item{x, }{a sample of a Mixed Model}
+\item{x}{a sample of a Mixed Model}
 
-\item{m, }{the number of states}
+\item{m}{the number of states}
 
-\item{L1, }{likelihood of the first hidden state}
+\item{L1}{likelihood of the first hidden state}
 
-\item{L2, }{likelihood of the second hidden state}
+\item{L2}{likelihood of the second hidden state}
 
-\item{L3-L5, }{optional. likelihoods of the third, 4th and 5th hidden state}
+\item{L3}{optional. likelihoods of the third hidden state}
+
+\item{L4}{optional. likelihoods of the 4th hidden state}
+
+\item{L5}{optional. likelihoods of the 5th hidden state}
 }
 \value{
 The estimated parameters are rounded by 3 decimals and returned in a list.
 }
 \description{
 Estimation of the transition probabilites, the initial state probabilites and the hidden state parameters of a Hidden Markov Model
-by using the direct Maximisation of the likelihoods.
+by using the Direct Maximisation of the likelihoods.
 }
 \details{
 This function estimates the Hidden Markov states by maximising the normalized log-likelihood
 of the forward propabilities. Due to the fact that bot the Gamma-matrix as well as the Sigma-matrix
-have some constrains, the function includes the restrictions within the function.
+have some constraints, the function includes the restrictions within the function.
 }

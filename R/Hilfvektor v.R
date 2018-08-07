@@ -9,10 +9,11 @@
 #' @param m number of likelihoods
 #' @param N length of the supplied dataset
 #' @param beta beta matrix
-#' @param u output matrix of the u_function
-#' @param Gamma Gamma matrix
 #' @param p vector of likelihood probabilities of dataset
+#' @param c weights provided by the alpha calculation
+#' @param Gamma Gamma matrix
 #' @param set index vector to align the p vector
+#' @param u output matrix of the u_function
 #'
 
 #' @return returns the coresponding values BUT due to further calculation steps

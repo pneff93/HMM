@@ -13,18 +13,18 @@ beta_function(m, N, Gamma, p, set, c)
 
 \item{Gamma}{Gamma matrix}
 
-\item{p}{vector of likelihood probabilities of dataset}
+\item{p}{vector of likelihood probabilities of the dataset}
 
 \item{set}{index vector to align the p vector}
 
 \item{c}{weights provided by the alpha calculation}
 }
 \value{
-Returns the beta as a matrix with the dimensions m rows
+Returns the beta as a matrix with the dimensions m as rows
 and the datapoints t as columns.
 }
 \description{
 This function calculates the normalized backward probability of the HMM states. It is important
 to recall, that the provided weights come from the calculation of the forward probabilities one step ahead
-In the general literatur also revered to as beta matrix
+In the general literatur also revered to as beta matrix.
 }

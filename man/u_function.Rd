@@ -2,7 +2,7 @@
 % Please edit documentation in R/Hilfvektor u.R
 \name{u_function}
 \alias{u_function}
-\title{normalized u-function}
+\title{Normalized u-function}
 \usage{
 u_function(m, N, alpha, beta)
 }
@@ -16,7 +16,7 @@ u_function(m, N, alpha, beta)
 \item{beta}{normalized beta matrix}
 }
 \value{
-returns the coresponding normalized u's
+returns the corresponding normalized u's
 }
 \description{
 This function calculates the u-function which is part of the estimation step.
