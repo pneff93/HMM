@@ -1,5 +1,5 @@
 context("HMM3 Test control")
-source("Transformation.R")
+
 
 test_that("Probit Control mit p=0.5", {
   #Due to the fact that the probit transformation uses the exponential function
@@ -13,7 +13,6 @@ test_that("Probit Control mit p=0.5", {
   expect_equal(prob_test[,3] ,c(0.5,0.5))
   expect_equal(prob_test[,4],c(1,1))
 })
-
 
 
 
