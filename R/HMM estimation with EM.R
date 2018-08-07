@@ -165,7 +165,7 @@ while (delta>d && q<z){
 }
 #AIC<--2*log(L)+2*(m+m*m+m)
 
-return<-list( "method of estimation:" = "Maximisation via the EM-Algorithm", sigma=round(sigma_hat,3), Gamma=round(Gamma_hat,3), theta=round(theta_hat, 3), iterations=q, delta=delta, AIC=AIC)
+return<-list( "method of estimation:" = "Maximisation via the EM-Algorithm", sigma=round(sigma_hat,3), Gamma=round(Gamma_hat,3), theta=round(theta_hat, 3), iterations=q, delta=delta)#, AIC=AIC)
 
 return(return)
 }
