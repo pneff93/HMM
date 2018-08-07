@@ -1,8 +1,9 @@
 #' v-function
 #' 
 #' @description This function calculates the v-function which is part of the estimation step. 
-#' Each element in v aligns with the conditional expectation to 
-#' reach state k from the previous state j given your datapoint x(t)
+#' Each element in v aligns with the conditional expectation to reach state k from the previous
+#' state j given your datapoint x(t). Due to the normalizing of the factors we also need to include
+#' the corresponding weights into our function. 
 #' 
 #' 
 #' @param m number of Likelihoods

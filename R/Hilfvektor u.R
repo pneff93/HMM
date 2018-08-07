@@ -1,8 +1,9 @@
-#' u-function
+#' normalized u-function
 #' 
 #' @description This function calculates the u-function which is part of the estimation step. 
 #' Each element in u aligns with the conditional expectation to 
-#' reach state j given your datapoint x(t)
+#' reach state j given your datapoint x(t). The corresponding weights are already included in the
+#' alpha and beta values.  
 #' 
 #' 
 #' @param m number of Likelihoods
@@ -11,7 +12,7 @@
 #' @param beta normalized beta matrix 
 #'
 
-#' @return returns the coresponding u's
+#' @return returns the coresponding normalized u's
 #' 
 
 
