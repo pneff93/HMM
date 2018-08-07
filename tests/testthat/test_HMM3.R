@@ -13,7 +13,12 @@ test_that("Probit Control mit p=0.5", {
   expect_equal(prob_test[,4],c(1,1))
 })
 
-
-
+test_that("Control of Likelihood function", {
+  #with a fixed set of parameters we expect to gain the same result for the likelihood
+  #every time. factor= c(0,0,0,1,1), L1=L2=normal distr. with sigma=0 and m=2 
+  # x1 =c(1,1,0,0) and x2 =c(1,1,1,1)
+  expect_equal(round(LH(c(0,0,0,1,1),m=2,x=c(1,1,0,0),L1=dnorm,L2=dnorm),4), 4.6758)
+  expect_equal(round(LH(c(0,0,0,1,1),m=2,x=c(1,1,1,1),L1=dnorm,L2=dnorm),4), 3.6758)
+})
 
 
