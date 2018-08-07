@@ -1,6 +1,5 @@
 context("HMM3 Test control")
 
-
 test_that("Probit Control mit p=0.5", {
   #Due to the fact that the probit transformation uses the exponential function
   #we should get the probability 0.5 for Sigma and Gamma alike if we use m=2 
@@ -13,6 +12,8 @@ test_that("Probit Control mit p=0.5", {
   expect_equal(prob_test[,3] ,c(0.5,0.5))
   expect_equal(prob_test[,4],c(1,1))
 })
+
+
 
 
 
