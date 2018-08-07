@@ -7,11 +7,11 @@
 #' @param m the number of states
 #' @param L1 likelihood of the first hidden state
 #' @param L2 likelihood of the second hidden state
-#' @param L3 optional. likelihoods of the third hidden state
-#' @param L4 optional. likelihoods of the 4th hidden state
-#' @param L5 optional. likelihoods of the 5th hidden state
-#' @param iterations, optional. number of iterations for the EM-Algorithm
-#' @param delta, optional. stop criterion for the EM-Algorithm
+#' @param L3 optional. likelihood of the third hidden state
+#' @param L4 optional. likelihood of the 4th hidden state
+#' @param L5 optional. likelihood of the 5th hidden state
+#' @param iterations optional. number of iterations for the EM-Algorithm
+#' @param delta optional. stop criterion for the EM-Algorithm
 #'
 #' @return The estimated parameters are rounded by 3 decimals and returned in a list.
 #' @details This function estimates the hidden states of the Hidden Markov Model with the

@@ -15,6 +15,8 @@ v_function(m, N, beta, p, c, Gamma, set, u)
 
 \item{p}{vector of likelihood probabilities of dataset}
 
+\item{c}{weights provided by the alpha calculation}
+
 \item{Gamma}{Gamma matrix}
 
 \item{set}{index vector to align the p vector}
