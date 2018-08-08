@@ -86,7 +86,12 @@ HMM3<-function(x, m, L1, L2,L3,L4,L5){
   factor <- c()
   factor[1:(m-1)] <- log((1/m)/(1-(m-1)*(1/m)))
   factor[m:((m+1)*(m-1))] <-(log((1/m)/(1-(m-1)*(1/m))))
-  factor[((m-1)*(m+1)+1):((m-1)*(m+1)+m)]<-sample(x, size=m)
+  
+  theta_hat<-c()
+  #quantile defintion vector
+  s <- seq(0,1,length.out = m+2)[c(-1,-(m+2))]
+  
+  factor[((m-1)*(m+1)+1):((m-1)*(m+1)+m)]<-quantile(x,s)
 
 
 

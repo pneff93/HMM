@@ -29,7 +29,10 @@ HMM2<-function(x, m, L1, L2, L3=NULL, L4=NULL, L5=NULL, iterations=NULL, delta=N
 #setting starting values:
 
 theta_hat<-c()
-theta_hat[1:m]<-sample(x, size=m)
+#quantile defintion vector
+s <- seq(0,1,length.out = m+2)[c(-1,-(m+2))]
+
+theta_hat[1:m]<-quantile(x,s)
 
 Gamma_hat<-matrix(, ncol = m, nrow = m)
 Gamma_hat[,]<-1/m
