@@ -71,8 +71,10 @@ trans <- function (factor,m){
       }
     }
   }
-  theta <- factor[((m-1)*(m+1)+1):((m-1)*(m+1)+m)]
-  return(cbind(sigma,gamma,theta))}
+  
+
+  theta <- factor[((m-1)*(m+1)+1):length(factor)]
+  return(list(sigma,gamma,theta))}
 
 
 

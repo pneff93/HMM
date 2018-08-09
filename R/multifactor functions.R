@@ -19,7 +19,7 @@
 #' depend on multiple unkown thetas.
 #' 
 #' For each individual likelihood a starting parameter has to be set in order to compute the estimation of the corresponding
-#' Thetas. Each groupe of parameters is placed in a seperate element of the theta list e.g.:
+#' Thetas. Each groupe of parameters is placed in a seperate element of the theta list as a vector e.g.:
 #' theta[[i]] <- c(parameter1,parameter2,...)
 #'
 #' In the method parameter the underlying estimation function is selected. With DM the HMM-function will
