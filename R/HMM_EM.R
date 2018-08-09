@@ -44,27 +44,12 @@ sigma_hat[,]<-1/m
 #sample size
 N<-length(x)
 
-#likelihoods
-p1<-L1(x, theta_hat[1])
-p2<-L2(x, theta_hat[2])
-p<-c(p1,p2)
-
-if(!is.null(L3)){
-  p3<-L3(x, theta_hat[3])
-  p<-c(p,p3)
-}
-if(!is.null(L4)){
-  p4<-L4(x, theta_hat[4])
-  p<-c(p,p4)
-}
-if(!is.null(L5)){
-  p5<-L5(x, theta_hat[5])
-  p<-c(p,p5)
-}
-
 
 #We define a treshold of the sample size for every likelihood
-set<-seq(1, length(p)-N+1, length.out = m)
+#In later iteration we combine the individual likelihoods to on general 
+#probability vector. The index set defines every cut, where a new likelihood
+#beginns 
+set<-seq(1,m*N-N+1, length.out = m)
 
 
 #while-loop parameters
@@ -87,7 +72,13 @@ delta<-Inf
 while (delta>d && q<z){
 
   q<-q+1
+  
+  theta<-theta_hat
+  Gamma<-Gamma_hat
+  sigma<-sigma_hat
+  
 
+  #computation of the individual likelihoods for all states 
   p1<-L1(x, theta_hat[1])
   p2<-L2(x, theta_hat[2])
   p<-c(p1,p2)
@@ -105,10 +96,7 @@ while (delta>d && q<z){
     p<-c(p,p5)
   }
 
-  theta<-theta_hat
-  Gamma<-Gamma_hat
-  sigma<-sigma_hat
-
+ 
 
   out<-alpha_function(m, N, sigma, Gamma, p, set)
   alpha <- out[[1]]

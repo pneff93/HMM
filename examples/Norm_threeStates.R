@@ -3,21 +3,21 @@
 
 
 #transition matrix
-gamma<-matrix(c(0.4,0.2,0.4,
+gamma<-matrix(c(0.9,0.05,0.05,
                 0.1,0.4,0.5,
-                0.3,0.4,0.3), byrow=T, nrow=3)
+                0.3,0.5,0.2), byrow=T, nrow=3)
 
 #initial state probabilities
 sigma<-c(0.5, 0.3, 0.2)
 
 #sample size
-n<- 3000
+n<- 5000
 
 x<-c()
 set.seed(100)
 s1<-rnorm(10000, 7, 1)
 s2<-rnorm(10000, 2, 1)
-s3<-rnorm(10000, 10, 1)
+s3<-rnorm(10000, 12, 1)
 
 
 #initial state
@@ -69,6 +69,7 @@ L3<-function(x, mu){
 
 
 m<-3
+
 
 HMM(x=x,m=m,method="EM",L1=L1,L2=L2,L3=L3)
 
