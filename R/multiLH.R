@@ -1,6 +1,6 @@
 #' Likelihood of the Hidden Markov Model
 #'
-#' @description 
+#' @description Direct likelihood of the multi-variate HMM 
 #'
 #' @param factor Input of variables that are unrestricted
 #' @param x a sample of a Mixed Model
@@ -10,6 +10,7 @@
 #' @param L3 optional. likelihood of the third hidden state
 #' @param L4 optional. likelihood of the 4th hidden state
 #' @param L5 optional. likelihood of the 5th hidden state
+#' @param set2 index parameter to control the number of theta inputs 
 #'
 #' @return negative Likelihood
 #' @details This function computes the log-likelihood of the forward propabilities of the HMM given the factor values
@@ -19,8 +20,6 @@
 #' The likelihood is constructed with normalizing the alpha vectors.
 #' 
 #'
-
-
 
 
 
