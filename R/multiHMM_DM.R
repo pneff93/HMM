@@ -21,63 +21,7 @@
 
 multiHMM3<-function(x,theta, m, L1, L2,L3,L4,L5){
   
-  #This function is the log-likelihood of the forward propabilities of the HMM
-  #the input factor are the transformed values of Sigma, Gamma and Theta that hold
-  #under the constrains
-  
-  multiLH <- function (factor,x,m, L1, L2,L3=NULL,L4=NULL,L5=NULL,set2){
-    
-    #We first have to transform the factors without constrains into our Sigma/Gamma/Theta
-    #values with constrains
-    out <- trans(factor,m)
-    sigma <- out[[1]]
-    gamma <- out[[2]]
-    theta <- out[[3]]
-    
-    T <- length(x)
-    
-    
-    #likelihoods
-    
-    p1<-L1(x, theta[set2[1]:(set2[2]-1)])
-    p2<-L2(x, theta[set2[2]:(set2[3]-1)])
-    p<-c(p1,p2)
-    
-    if(!is.null(L3)){
-      p3<-L3(x, theta[set2[3]:(set2[4]-1)])
-      p<-c(p,p3)
-    }
-    if(!is.null(L4)){
-      p4<-L4(x, theta[set2[4]:(set2[5]-1)])
-      p<-c(p,p4)
-    }
-    if(!is.null(L5)){
-      p5<-L5(x, theta[set2[5]:(set2[6]-1)])
-      p<-c(p,p5)
-    }    
-    
-    set<-seq(1, length(p)-T+1, length.out = m)
-    
-    #Computation of the log-likelihood with normalized alphas to tackle the underflow problem
-    
-    #normalized alpha
-    nalpha<- matrix(,nrow=m, ncol=T)
-    v <- sigma%*%diag(c(p[set]))
-    u <- sum(v)
-    l <- log(u)
-    nalpha [,1] <- t(v/u)
-    
-    
-    for (t in 2:T){
-      v <- nalpha[,t-1]%*%gamma%*%diag(c(p[set+t-1]))
-      u <- sum(v)
-      l <- l + log(u)
-      nalpha[,t]<- t(v/u)
-      
-    }
-    return (-1*l)
-  }
-  
+  #The calulation of the multi LH function is in a seperate function call 
   #setting starting values:
   
   #factor starting value (sigma and all gamma values are 1/m)

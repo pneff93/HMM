@@ -21,7 +21,7 @@
 
 HMM3<-function(x, m, L1, L2,L3,L4,L5){
 
-  #Estimation via the direct Likelihood that is in a seperate function call
+  #The calculation of the LH function is in a seperate function call. 
 
   #setting starting values:
 
