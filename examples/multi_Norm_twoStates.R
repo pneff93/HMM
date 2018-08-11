@@ -57,7 +57,7 @@ L2<-function(x,theta){
 theta1 <- list(10,c(0,5))
 theta1
 m<-2
-multiHMM3(x=x,theta=theta1,m=2,L1,L2)
+multiHMM2(x=x,theta=theta1,m=2,L1,L2)
 
 multifactorHMM(x=x,theta=theta1,m=m,method="EM",L1=L1,L2=L2)
 multifactorHMM(x=x,theta=theta1,m=m,method="DM",L1=L1,L2=L2)

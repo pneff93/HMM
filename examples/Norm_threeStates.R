@@ -73,5 +73,5 @@ m<-3
 
 HMM(x=x,m=m,method="EM",L1=L1,L2=L2,L3=L3)
 
-#HMM(x=x,m=m,method="DM",L1=L1,L2=L2,L3=L3)
+HMM(x=x,m=m,method="DM",L1=L1,L2=L2,L3=L3)
 
