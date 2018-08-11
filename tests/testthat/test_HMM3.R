@@ -7,10 +7,9 @@ test_that("Probit Control mit p=0.5", {
   
   prob_test <- trans(c(0,0,0,1,1),m=2)
   
-  expect_equal(prob_test[,1],c(0.5,0.5))
-  expect_equal(prob_test[,2],c(0.5,0.5))
-  expect_equal(prob_test[,3],c(0.5,0.5))
-  expect_equal(prob_test[,4],c(1,1))
+  expect_equal(prob_test[[1]],c(0.5,0.5))
+  expect_equal(prob_test[[2]],matrix(c(0.5,0.5,0.5,0.5),2,2))
+  expect_equal(prob_test[[3]],c(1,1))
 })
 
 test_that("Control of Likelihood function", {

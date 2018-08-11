@@ -25,7 +25,7 @@ multiHMM3<-function(x,theta, m, L1, L2,L3,L4,L5){
   #the input factor are the transformed values of Sigma, Gamma and Theta that hold
   #under the constrains
   
-  LH <- function (factor,x,m, L1, L2,L3=NULL,L4=NULL,L5=NULL,set2){
+  multiLH <- function (factor,x,m, L1, L2,L3=NULL,L4=NULL,L5=NULL,set2){
     
     #We first have to transform the factors without constrains into our Sigma/Gamma/Theta
     #values with constrains
@@ -111,13 +111,13 @@ multiHMM3<-function(x,theta, m, L1, L2,L3,L4,L5){
   #We maximize the log-likelihood with nlminb
   #Depending on the number of likelihoods
   if (m==2){
-    factor_out<- nlminb(start=factor,LH,x=x,m=m,L1=L1,L2=L2,set2=set2)$par
+    factor_out<- nlminb(start=factor,multiLH,x=x,m=m,L1=L1,L2=L2,set2=set2)$par
   } else if (m==3) {
-    factor_out<- nlminb(start=factor,LH,x=x,m=m,L1=L1,L2=L2,L3=L3,set2=set2)$par
+    factor_out<- nlminb(start=factor,multiLH,x=x,m=m,L1=L1,L2=L2,L3=L3,set2=set2)$par
   } else if (m==4) {
-    factor_out<- nlminb(start=factor,LH,x=x,m=m,L1=L1,L2=L2,L3=L3,L4=L4,set2=set2)$par
+    factor_out<- nlminb(start=factor,multiLH,x=x,m=m,L1=L1,L2=L2,L3=L3,L4=L4,set2=set2)$par
   } else if (m==5) {
-    factor_out<- nlminb(start=factor,LH,x=x,m=m,L1=L1,L2=L2,L3=L3,L4=L4,L5=L5,set2=set2)$par
+    factor_out<- nlminb(start=factor,multiLH,x=x,m=m,L1=L1,L2=L2,L3=L3,L4=L4,L5=L5,set2=set2)$par
   }
   
   

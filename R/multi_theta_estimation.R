@@ -24,7 +24,7 @@ multi_theta_estimation<-function( m, N, u, x, theta, L1, L2, L3=NULL, L4=NULL, L
   
   l3<-0
   
-  p1<-L1(x, theta_hat[set2[1]:(set2[2]-1)])
+  p1<-L1(x, theta[set2[1]:(set2[2]-1)])
   
   #For the first likelihood
   l3 <- l3 + u[,1]%*%(log(L1(x,theta[set2[1]:(set2[2]-1)])))
