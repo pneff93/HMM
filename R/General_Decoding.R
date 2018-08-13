@@ -47,11 +47,16 @@ decode <- function(x, m, L1, L2, L3=NULL, L4=NULL, L5=NULL, gamma,sigma,theta,mu
     
           theta_hat<-c()
           set2 <- c()
-          #rewriting the thetas 
+          #rewriting the thetas (see the multi functions for further explanation )
           for (i in 1:length(theta)){
             set2[i] <- length(theta_hat)+1
             theta_hat <-c(theta_hat,theta[[i]])
           }
+          
+          
+          set2[length(set2)+1] <- length(theta_hat)+1
+          
+          #p-Vector :
           
           p1<-L1(x, theta_hat[set2[1]:(set2[2]-1)])
           p2<-L2(x, theta_hat[set2[2]:(set2[3]-1)])
@@ -153,7 +158,7 @@ decode <- function(x, m, L1, L2, L3=NULL, L4=NULL, L5=NULL, gamma,sigma,theta,mu
   question <- (sum(global_path_out-local_path_out)!=0)
   
   
-  return(list("The local decoded path is as follows"=local_path_out,"The global decoded path is as follows"=global_path_out,
+  return(list(Local_Decoding=local_path_out,Global_Decoding=global_path_out,
          "Differences in decoding"=question))
   
   

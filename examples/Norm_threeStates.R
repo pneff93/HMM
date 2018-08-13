@@ -11,7 +11,7 @@ gamma<-matrix(c(0.9,0.05,0.05,
 sigma<-c(0.5, 0.3, 0.2)
 
 #sample size
-n<- 5000
+n<- 500
 
 x<-c()
 set.seed(100)
@@ -71,7 +71,7 @@ L3<-function(x, mu){
 m<-3
 
 
-HMM(x=x,m=m,method="EM",L1=L1,L2=L2,L3=L3)
+HMM(x=x,m=m,method="EM",L1=L1,L2=L2,L3=L3,decoding = TRUE)
 
-HMM(x=x,m=m,method="DM",L1=L1,L2=L2,L3=L3)
+HMM(x=x,m=m,method="DM",L1=L1,L2=L2,L3=L3,decoding=TRUE)
 
