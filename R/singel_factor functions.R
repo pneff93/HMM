@@ -11,6 +11,9 @@
 #' @param L5 optional. likelihood of the 5th hidden state
 #' @param iterations optional. number of iterations for the EM-Algorithm
 #' @param delta optional. stop criterion for the EM-Algorithm
+#' @param decoding if parameter set TRUE the function returns the most propable paths via local and global decoding
+#' 
+#' 
 #' @return The estimated parameters are rounded by 3 decimals and returned in a list
 #' @details
 #' This package is designed to estimate the hidden states of a HMM-Model, given the underlying likelihoods
@@ -30,14 +33,27 @@
 #'
 #' @export
 #'
-HMM<-function(x, m,method="DM", L1, L2, L3=NULL, L4=NULL, L5=NULL, iterations=NULL, delta=NULL){
+HMM<-function(x, m,method="DM", L1, L2, L3=NULL, L4=NULL, L5=NULL, iterations=NULL, delta=NULL,decoding=FALSE){
 
 #This is the head function, which seperates between the methods:
   if (method == "DM"){
     output <- HMM3(x=x, m=m, L1=L1, L2=L2,L3=L3,L4=L4,L5=L5)
+    
+    #Decoding:
+    if (decoding==TRUE){
+      dec <-decode(x=x,m=m, L1=L1, L2=L2,L3=L3,L4=L4,L5=L5,gamma=output$Gamma, sigma=output$Sigma,theta=output$Theta,multi=FALSE)
+      output <- (append(output,dec)) 
+    }
     return(output)
   } else if (method == "EM"){
     output <- HMM2(x=x, m=m, L1=L1, L2=L2, L3=L3, L4=L4, L5=L5, iterations=iterations, delta=delta)
+    
+    #Decoding:
+    if (decoding==TRUE){
+      dec <-decode(x=x,m=m, L1=L1, L2=L2,L3=L3,L4=L4,L5=L5,gamma=output$Gamma, sigma=output$Sigma,theta=output$Theta,multi=FALSE)
+      output <- append(output,dec)
+    } 
+    
     return(output)
     }else {
     warning("The supplied method is not available in the HMM function. Chooose between \"DM\" or \"EM\".", call. = T)

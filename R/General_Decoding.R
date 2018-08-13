@@ -154,7 +154,7 @@ decode <- function(x, m, L1, L2, L3=NULL, L4=NULL, L5=NULL, gamma,sigma,theta,mu
   
   
   return(list("The local decoded path is as follows"=local_path_out,"The global decoded path is as follows"=global_path_out,
-         "Differences in path prediction"=question))
+         "Differences in decoding"=question))
   
   
 }  

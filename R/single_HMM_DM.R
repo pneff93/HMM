@@ -57,8 +57,8 @@ HMM3<-function(x, m, L1, L2,L3,L4,L5){
    out <- trans(factor_out,m)
    final <- list(
         "Method of estimation:" = "Direct Maximisation of the likelihoods",
-        Sigma = round( out[,1],3),
-        Gamma= round(out[,c(-1,-ncol(out))],3),
-        Theta = round( out[,ncol(out)],3))
+        Sigma = round( out[[1]],3),
+        Gamma= round(out[[2]],3),
+        Theta = round( out[[3]],3))
    return(final)
 }
