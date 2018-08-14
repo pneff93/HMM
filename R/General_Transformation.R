@@ -11,7 +11,7 @@
 #' the constrains of the parameter values. This function ensures that the the estimated parameters 
 #' of the direct optimisation still fullfill their requirements. These are that the probabilities are
 #' between zero and one and that the rows of gamma (as well as sigma) sum up to one.
-#' For this transformation the probit model is used. 
+#' For this transformation the logit model is used. 
 #' 
 #' Thus with the input factor containing the elements that determine Sigma and Gamma we need 
 #' the following number of elements for each parameter:
@@ -33,7 +33,7 @@
 
 trans <- function (factor,m){
   # Building the constrains: 
-  #sigma via probit transformation:
+  #sigma via logit transformation:
   #with sigma[1] <- exp(factor[1])/(1+exp(factor[1]))
   
   sigma <-c()

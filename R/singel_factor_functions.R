@@ -31,6 +31,9 @@
 #'
 #' The underlying functions are the HMM2 for the EM-Algorithm and the HMM3 for the Direct Maximisation
 #'
+#' @import stats
+#' @seealso [multifactorHMM()]
+#'
 #' @export
 #'
 HMM<-function(x, m,method="DM", L1, L2, L3=NULL, L4=NULL, L5=NULL, iterations=NULL, delta=NULL,decoding=FALSE){

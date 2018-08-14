@@ -10,7 +10,7 @@
 #' @param L3 optional. likelihood of the third hidden state
 #' @param L4 optional. likelihood of the 4th hidden state
 #' @param L5 optional. likelihood of the 5th hidden state
-#' @param theta 
+#' @param theta initial parameters for the estimation of the likelihood parameters. See details for more information 
 #' @param iterations optional. number of iterations for the EM-Algorithm
 #' @param delta optional. stop criterion for the EM-Algorithm
 #'
@@ -20,8 +20,9 @@
 #' maximisation steps to arrive at the predicted parameters. When the maximum difference between
 #' the functions is abitrarily small (see delta) the iteration stops.
 #'
-
-
+#' For each individual likelihood an initial starting parameter has to be set in order to compute the estimation of the corresponding
+#' Thetas. Each groupe of parameters is placed in a seperate element of the theta list as a vector e.g.:
+#' theta[[i]] <- c(parameter1,parameter2,...)
 
 
 

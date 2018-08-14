@@ -1,6 +1,6 @@
 #' Likelihood of the Hidden Markov Model
 #'
-#' @description 
+#' @description This function calculates the log-likelihood of the HMM model by normalizing the forward-probabilities.
 #'
 #' @param factor Input of variables that are unrestricted
 #' @param x a sample of a Mixed Model
@@ -12,7 +12,7 @@
 #' @param L5 optional. likelihood of the 5th hidden state
 #'
 #' @return negative Likelihood
-#' @details This function computes the log-likelihood of the forward propabilities of the HMM given the factor values
+#' @details This function computes the log-likelihood of the forward probabilities of the HMM given the factor values
 #' Due to the fact that the Sigma and Gamma matrices are in a form restricted, the transformation function is used to 
 #' transform the factor variables in suitable canidates. 
 #' 

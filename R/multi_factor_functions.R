@@ -12,7 +12,7 @@
 #' @param L5 optional. likelihood of the 5th hidden state
 #' @param iterations optional. number of iterations for the EM-Algorithm
 #' @param delta optional. stop criterion for the EM-Algorithm
-#' @param decoding if parameter set TRUE the function returns the most propable paths via local and global decoding
+#' @param decoding if parameter set TRUE the function returns the most probable paths via local and global decoding
 #' 
 #' 
 #' @return The estimated parameters are rounded by 3 decimals and returned in a list
@@ -35,6 +35,10 @@
 #'
 #'
 #' The underlying functions are the multiHMM2 for the EM-Algorithm and the multiHMM3 for the Direct Maximisation
+#'
+#'@import stats
+#'@seealso [HMM()]
+#'
 #'
 #' @export
 #'

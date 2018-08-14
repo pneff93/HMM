@@ -11,11 +11,15 @@
 #' @param L3 optional. likelihood of the third hidden state
 #' @param L4 optional. likelihood of the 4th hidden state
 #' @param L5 optional. likelihood of the 5th hidden state
-#' @param theta initial parameters for the estimation of the likelihood parameters 
+#' @param theta initial parameters for the estimation of the likelihood parameters. See details for more information. 
 #' @return The estimated parameters are rounded by 3 decimals and returned in a list.
 #' @details This function estimates the Hidden Markov states by maximising the normalized log-likelihood
-#' of the forward propabilities. Due to the fact that bot the Gamma-matrix as well as the Sigma-matrix
+#' of the forward probabilities. Due to the fact that bot the Gamma-matrix as well as the Sigma-matrix
 #' have some constraints, the function includes the restrictions within the function.
+#' 
+#' For each individual likelihood an initial starting parameter has to be set in order to compute the estimation of the corresponding
+#' Thetas. Each groupe of parameters is placed in a seperate element of the theta list as a vector e.g.:
+#' theta[[i]] <- c(parameter1,parameter2,...)
 #'
 
 
@@ -25,7 +29,7 @@ multiHMM3<-function(x,theta, m, L1, L2,L3,L4,L5){
   #setting starting values:
   
   #factor starting value (sigma and all gamma values are 1/m)
-  #due to the transformation we have to use the reverse link function of the probit model
+  #due to the transformation we have to use the reverse link function of the logit model
   
   #Like in the EM-function we first decode the theta list into a theta vector
   #this theta hat is later crutial as initial parameter for the optimisation

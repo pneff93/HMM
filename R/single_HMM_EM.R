@@ -19,6 +19,7 @@
 #' maximisation steps to arrive at the predicted parameters. When the maximum difference between
 #' the functions is abitrarily small (see delta) the iteration stops.
 #'
+#'
 
 
 

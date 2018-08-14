@@ -26,7 +26,7 @@ HMM3<-function(x, m, L1, L2,L3,L4,L5){
   #setting starting values:
 
   #factor starting value (sigma and all gamma values are 1/m)
-  #due to the transformation we have to use the reverse link function of the probit model
+  #due to the transformation we have to use the reverse link function of the logit model
 
   factor <- c()
   factor[1:(m-1)] <- log((1/m)/(1-(m-1)*(1/m)))
