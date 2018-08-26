@@ -32,7 +32,7 @@ by using the Direct Maximisation of the likelihoods.
 }
 \details{
 This function estimates the Hidden Markov states by maximising the normalized log-likelihood
-of the forward probabilities. Due to the fact that bot the Gamma-matrix as well as the Sigma-matrix
+of the forward probabilities. Due to the fact that bot the Gamma-matrix as well as the delta-vector
 have some constraints, the function includes the restrictions within the function.
 
 For each individual likelihood an initial starting parameter has to be set in order to compute the estimation of the corresponding

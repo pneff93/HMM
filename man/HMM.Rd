@@ -5,7 +5,7 @@
 \title{Fitting a Hidden Markov Model}
 \usage{
 HMM(x, m, method = "DM", L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
-  iterations = NULL, delta = NULL, decoding = FALSE)
+  iterations = NULL, DELTA = NULL, decoding = FALSE)
 }
 \arguments{
 \item{x}{a sample of a Mixed Model}
@@ -26,7 +26,7 @@ HMM(x, m, method = "DM", L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
 
 \item{iterations}{optional. number of iterations for the EM-Algorithm}
 
-\item{delta}{optional. stop criterion for the EM-Algorithm}
+\item{DELTA}{optional. stop criterion for the EM-Algorithm}
 
 \item{decoding}{if parameter set TRUE the function returns the most propable paths via local and global decoding}
 }

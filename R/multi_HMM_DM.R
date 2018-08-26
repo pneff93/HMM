@@ -14,7 +14,7 @@
 #' @param theta initial parameters for the estimation of the likelihood parameters. See details for more information. 
 #' @return The estimated parameters are rounded by 3 decimals and returned in a list.
 #' @details This function estimates the Hidden Markov states by maximising the normalized log-likelihood
-#' of the forward probabilities. Due to the fact that bot the Gamma-matrix as well as the Sigma-matrix
+#' of the forward probabilities. Due to the fact that bot the Gamma-matrix as well as the delta-vector
 #' have some constraints, the function includes the restrictions within the function.
 #' 
 #' For each individual likelihood an initial starting parameter has to be set in order to compute the estimation of the corresponding
@@ -28,7 +28,7 @@ multiHMM3<-function(x,theta, m, L1, L2,L3,L4,L5){
   #The calulation of the multi LH function is in a seperate function call 
   #setting starting values:
   
-  #factor starting value (sigma and all gamma values are 1/m)
+  #factor starting value (delta and all gamma values are 1/m)
   #due to the transformation we have to use the reverse link function of the logit model
   
   #Like in the EM-function we first decode the theta list into a theta vector
@@ -69,7 +69,7 @@ multiHMM3<-function(x,theta, m, L1, L2,L3,L4,L5){
   }
   
   
-  #Transform the maximized values to our Gamma/Sigma/Theta and return the output
+  #Transform the maximized values to our Gamma/delta/Theta and return the output
   out <- trans(factor_out,m)
   theta_hat <- out[[3]]
   theta_out <-list()
@@ -80,7 +80,7 @@ multiHMM3<-function(x,theta, m, L1, L2,L3,L4,L5){
   
   final <- list(
     "Method of estimation:" = "Direct Maximisation of the likelihoods",
-    Sigma = round( out[[1]],3),
+    delta = round( out[[1]],3),
     Gamma= round(out[[2]],3),
     Theta = theta_out)
   return(final)

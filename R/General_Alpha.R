@@ -8,7 +8,7 @@
 #'
 #' @param m number of likelihoods
 #' @param N length of the supplied dataset
-#' @param sigma sigma vector
+#' @param delta delta vector
 #' @param Gamma Gamma matrix
 #' @param p vector of likelihood probabilities of the dataset
 #' @param set index vector to align the p vector
@@ -19,12 +19,12 @@
 
 
 
-alpha_function<-function( m, N, sigma, Gamma, p, set ){
+alpha_function<-function( m, N, delta, Gamma, p, set ){
 
   alpha<-matrix(, ncol=m, nrow = N)
   c <- c()
-  c[1] <- sum(t(sigma)%*%diag(c(p[set])))
-  alpha[1,]<-(t(sigma)%*%diag(c(p[set])))/c[1]
+  c[1] <- sum(t(delta)%*%diag(c(p[set])))
+  alpha[1,]<-(t(delta)%*%diag(c(p[set])))/c[1]
 
   for (t in 2:N){
     prod <- alpha[t-1,]%*%Gamma%*%diag(c(p[set+t-1]))

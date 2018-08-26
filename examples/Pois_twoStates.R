@@ -7,7 +7,7 @@
 gamma<-matrix(c(0.8,0.2,0.3,0.7), byrow=T, nrow=2)
 
 #initial state probabilities
-sigma<-c(0.3,0.7)
+delta<-c(0.3,0.7)
 
 #sample size
 n<- 1000
@@ -20,7 +20,7 @@ s2<-rpois(10000, 2)
 #initial state
 random_number<-runif(1, 0, 1)
 
-if (random_number < sigma[1]){
+if (random_number < delta[1]){
   p<-1
   x[1]<-sample(s1, 1, replace = F)
 } else {

@@ -4,7 +4,7 @@
 \alias{decode}
 \title{Local and global decoding}
 \usage{
-decode(x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL, gamma, sigma,
+decode(x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL, gamma, delta,
   theta, multi = FALSE)
 }
 \arguments{
@@ -24,7 +24,7 @@ decode(x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL, gamma, sigma,
 
 \item{gamma}{estimated gamma matrix from previous estimation}
 
-\item{sigma}{estimated sigma vector from previous estimation}
+\item{delta}{estimated delta vector from previous estimation}
 
 \item{theta}{estimated theta values from previous estimation}
 

@@ -8,7 +8,7 @@ gamma<-matrix(c(0.7,0.25,0.05,
                 0.3,0.5,0.2), byrow=T, nrow=3)
 
 #initial state probabilities
-sigma<-c(0.5, 0.3, 0.2)
+delta<-c(0.5, 0.3, 0.2)
 
 #sample size
 n<- 500
@@ -23,10 +23,10 @@ s3<-rnorm(10000, 15, 3)
 #initial state
 random_number<-runif(1, 0, 1)
 
-if (random_number < sigma[1]){
+if (random_number < delta[1]){
   x[1]<-sample(s1, 1, replace = F)
   p<-1
-} else if (random_number < sum(sigma[1:2]) && random_number > sigma[1]) {
+} else if (random_number < sum(delta[1:2]) && random_number > delta[1]) {
   x[1]<-sample(s2, 1, replace = F)
   p<-2
 } else {

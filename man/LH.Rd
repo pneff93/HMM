@@ -31,7 +31,7 @@ This function calculates the log-likelihood of the HMM model by normalizing the 
 }
 \details{
 This function computes the log-likelihood of the forward probabilities of the HMM given the factor values
-Due to the fact that the Sigma and Gamma matrices are in a form restricted, the transformation function is used to 
+Due to the fact that the delta and Gamma matrices are in a form restricted, the transformation function is used to 
 transform the factor variables in suitable canidates. 
 
 The likelihood is constructed with normalizing the alpha vectors.

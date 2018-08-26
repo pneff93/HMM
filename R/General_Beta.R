@@ -1,7 +1,8 @@
 #' Normalized Backward Probability function
 #'
 #' @description This function calculates the normalized backward probability of the HMM states. It is important
-#' to recall, that the provided weights come from the calculation of the forward probabilities one step ahead
+#' to recall, that the provided weights come from the calculation of the forward probabilities one step ahead and
+#' have to be entered as factor c 
 #' In the general literatur also revered to as beta matrix.
 #'
 #' @param m number of likelihoods

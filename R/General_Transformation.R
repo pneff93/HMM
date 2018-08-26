@@ -1,7 +1,7 @@
 #' Transformation function - DM
 #' 
 #' @description Due to our single optimation problem we have to build constrains for Gamma and
-#' Sigma to fullfill the requirements of probabilties. 
+#' delta to fullfill the requirements of probabilties. 
 
 #' 
 #' @param factor see details
@@ -10,22 +10,22 @@
 #' @details In the direct maximisation the nlme()- minimisation function can not directly implement
 #' the constrains of the parameter values. This function ensures that the the estimated parameters 
 #' of the direct optimisation still fullfill their requirements. These are that the probabilities are
-#' between zero and one and that the rows of gamma (as well as sigma) sum up to one.
+#' between zero and one and that the rows of gamma (as well as delta) sum up to one.
 #' For this transformation the logit model is used. 
 #' 
-#' Thus with the input factor containing the elements that determine Sigma and Gamma we need 
+#' Thus with the input factor containing the elements that determine delta and Gamma we need 
 #' the following number of elements for each parameter:
 #' 
-#' Sigma vector (1 x m)  - (m-1)  elements required
+#' delta vector (1 x m)  - (m-1)  elements required
 #' Gamma matrix (m x m)  - m(m-1) elements required
 #' Theta vector (1 x m)  - m      elements required
 #' 
-#' By this defintion the input factor vector has to contain the elements for Sigma, Gamma and Theta
+#' By this defintion the input factor vector has to contain the elements for delta, Gamma and Theta
 #' in that order and has to have the dimension: (m+1)(m-1) + m
 #' 
 #'
 #' 
-#' @return returns a matrix with the sigma,Gamma and theta matrix bound together (collumn wise)
+#' @return returns a matrix with the delta,Gamma and theta matrix bound together (collumn wise)
 #' 
 #' 
 
@@ -33,15 +33,15 @@
 
 trans <- function (factor,m){
   # Building the constrains: 
-  #sigma via logit transformation:
-  #with sigma[1] <- exp(factor[1])/(1+exp(factor[1]))
+  #delta via logit transformation:
+  #with delta[1] <- exp(factor[1])/(1+exp(factor[1]))
   
-  sigma <-c()
+  delta <-c()
   div <- 1 + sum(exp(factor[1:(m-1)]))
   for (i in 1:(m-1)){
-    sigma[i] <- exp(factor[i])/div
+    delta[i] <- exp(factor[i])/div
   }
-  sigma[m] <- 1/div
+  delta[m] <- 1/div
   
   #Building restrictions on Gamma
   #for i =! j.
@@ -74,7 +74,7 @@ trans <- function (factor,m){
   
 
   theta <- factor[((m-1)*(m+1)+1):length(factor)]
-  return(list(sigma,gamma,theta))}
+  return(list(delta,gamma,theta))}
 
 
 

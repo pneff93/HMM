@@ -5,7 +5,7 @@
 \title{Fitting a Hidden Markov Model via Expectation-Maximisation Algorithm}
 \usage{
 HMM2(x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
-  iterations = NULL, delta = NULL)
+  iterations = NULL, DELTA = NULL)
 }
 \arguments{
 \item{x}{a sample of a Mixed Model}
@@ -24,7 +24,7 @@ HMM2(x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
 
 \item{iterations}{optional. number of iterations for the EM-Algorithm}
 
-\item{delta}{optional. stop criterion for the EM-Algorithm}
+\item{DELTA}{optional. stop criterion for the EM-Algorithm}
 }
 \value{
 The estimated parameters are rounded by 3 decimals and returned in a list.
@@ -37,5 +37,5 @@ by using the Baum-Welch Algorithm.
 This function estimates the hidden states of the Hidden Markov Model with the
 help of the Baum Welch algorithm. The function iteratively applies both estimation and
 maximisation steps to arrive at the predicted parameters. When the maximum difference between
-the functions is abitrarily small (see delta) the iteration stops.
+the functions is abitrarily small (see DELTA) the iteration stops.
 }

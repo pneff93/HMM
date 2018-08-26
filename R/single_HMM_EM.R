@@ -11,13 +11,13 @@
 #' @param L4 optional. likelihood of the 4th hidden state
 #' @param L5 optional. likelihood of the 5th hidden state
 #' @param iterations optional. number of iterations for the EM-Algorithm
-#' @param delta optional. stop criterion for the EM-Algorithm
+#' @param DELTA optional. stop criterion for the EM-Algorithm
 #'
 #' @return The estimated parameters are rounded by 3 decimals and returned in a list.
 #' @details This function estimates the hidden states of the Hidden Markov Model with the
 #' help of the Baum Welch algorithm. The function iteratively applies both estimation and
 #' maximisation steps to arrive at the predicted parameters. When the maximum difference between
-#' the functions is abitrarily small (see delta) the iteration stops.
+#' the functions is abitrarily small (see DELTA) the iteration stops.
 #'
 #'
 
@@ -25,7 +25,7 @@
 
 
 
-HMM2<-function(x, m, L1, L2, L3=NULL, L4=NULL, L5=NULL, iterations=NULL, delta=NULL){
+HMM2<-function(x, m, L1, L2, L3=NULL, L4=NULL, L5=NULL, iterations=NULL, DELTA=NULL){
 
 #setting starting values:
 
@@ -38,8 +38,8 @@ theta_hat[1:m]<-quantile(x,s)
 Gamma_hat<-matrix(, ncol = m, nrow = m)
 Gamma_hat[,]<-1/m
 
-sigma_hat<-matrix(, nrow = m)
-sigma_hat[,]<-1/m
+delta_hat<-matrix(, nrow = m)
+delta_hat[,]<-1/m
 
 
 #sample size
@@ -60,23 +60,23 @@ if(is.null(iterations)){
   z<-iterations
 }
 
-if(is.null(delta)){
+if(is.null(DELTA)){
   d<-0.0001
 } else {
-  d<-delta
+  d<-DELTA
 }
 
 q<-1
-delta<-Inf
+DELTA<-Inf
 
 
-while (delta>d && q<z){
+while (DELTA>d && q<z){
 
   q<-q+1
   
   theta<-theta_hat
   Gamma<-Gamma_hat
-  sigma<-sigma_hat
+  delta<-delta_hat
   
 
   #computation of the individual likelihoods for all states 
@@ -99,7 +99,7 @@ while (delta>d && q<z){
 
  
 
-  out<-alpha_function(m, N, sigma, Gamma, p, set)
+  out<-alpha_function(m, N, delta, Gamma, p, set)
   alpha <- out[[1]]
   weight <- out[[2]]
 
@@ -112,7 +112,7 @@ while (delta>d && q<z){
 
 
   #set in the likelihood (consisting of three parts)
-  sigma_hat<-sigma_hat<-u[1,]
+  delta_hat<-delta_hat<-u[1,]
 
   f<-apply(v,2,sum)
   f<-matrix(f, ncol = m, byrow = N)
@@ -137,20 +137,20 @@ while (delta>d && q<z){
 
   }
 
-  #Delta Estimation
-  delta1<-max(abs(sigma_hat-sigma))
-  delta2<-max(abs(Gamma_hat-Gamma))
-  delta3<-max(abs(theta_hat-theta))
-  delta<-max(delta1, delta2, delta3)
+  #DELTA Estimation (do not confuse with delta-vector)
+  DELTA1<-max(abs(delta_hat-delta))
+  DELTA2<-max(abs(Gamma_hat-Gamma))
+  DELTA3<-max(abs(theta_hat-theta))
+  DELTA<-max(DELTA1, DELTA2, DELTA3)
 
 }
 
 return<-list( "Method of estimation:" = "Maximisation via EM-Algorithm",
-              Sigma=round(sigma_hat,3),
+              delta=round(delta_hat,3),
               Gamma=round(Gamma_hat,3),
               Theta=round(theta_hat, 3),
               Iterations=q,
-              Delta=delta )
+              DELTA=DELTA )
 
 return(return)
 }

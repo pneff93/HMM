@@ -74,7 +74,7 @@ test_that("Differents multiple theta inputs",{
 
     
     #theta1
-    #The estimated thetas should be the same and have a mu =0.5 and sigma=0.5 
+    #The estimated thetas should be the same and have a mu =0.5 and delta=0.5 
     expect_equal(output1$Theta[[1]],c(0.5,0.5))
     expect_equal(output1$Theta[[2]],c(0.5,0.5))
     

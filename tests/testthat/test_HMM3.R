@@ -2,7 +2,7 @@ context("HMM3 Test control")
 
 test_that("Probit Control mit p=0.5", {
   #Due to the fact that the probit transformation uses the exponential function
-  #we should get the probability 0.5 for Sigma and Gamma alike if we use m=2 
+  #we should get the probability 0.5 for delta and Gamma alike if we use m=2 
   #and the factor c(0,0,0,1,1). Theta will be a vector of c(1,1)
   
   prob_test <- trans(c(0,0,0,1,1),m=2)

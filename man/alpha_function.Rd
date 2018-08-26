@@ -4,14 +4,14 @@
 \alias{alpha_function}
 \title{Normalized Forward Probability function}
 \usage{
-alpha_function(m, N, sigma, Gamma, p, set)
+alpha_function(m, N, delta, Gamma, p, set)
 }
 \arguments{
 \item{m}{number of likelihoods}
 
 \item{N}{length of the supplied dataset}
 
-\item{sigma}{sigma vector}
+\item{delta}{delta vector}
 
 \item{Gamma}{Gamma matrix}
 

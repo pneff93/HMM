@@ -14,7 +14,7 @@
 #'
 #' @return negative Likelihood
 #' @details This function computes the log-likelihood of the forward probabilities of the HMM given the factor values
-#' Due to the fact that the Sigma and Gamma matrices are in a form restricted, the transformation function is used to 
+#' Due to the fact that the delta and Gamma matrices are in a form restricted, the transformation function is used to 
 #' transform the factor variables in suitable canidates. 
 #' 
 #' The likelihood is constructed with normalizing the alpha vectors.
@@ -25,10 +25,10 @@
 
 multiLH <- function (factor,x,m, L1, L2,L3=NULL,L4=NULL,L5=NULL,set2){
   
-  #We first have to transform the factors without constrains into our Sigma/Gamma/Theta
+  #We first have to transform the factors without constrains into our delta/Gamma/Theta
   #values with constrains
   out <- trans(factor,m)
-  sigma <- out[[1]]
+  delta <- out[[1]]
   gamma <- out[[2]]
   theta <- out[[3]]
   
@@ -60,7 +60,7 @@ multiLH <- function (factor,x,m, L1, L2,L3=NULL,L4=NULL,L5=NULL,set2){
   
   #normalized alpha
   nalpha<- matrix(,nrow=m, ncol=T)
-  v <- sigma%*%diag(c(p[set]))
+  v <- delta%*%diag(c(p[set]))
   u <- sum(v)
   l <- log(u)
   nalpha [,1] <- t(v/u)

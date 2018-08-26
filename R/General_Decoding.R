@@ -13,7 +13,7 @@
 #' @param L4 optional. likelihood of the 4th hidden state
 #' @param L5 optional. likelihood of the 5th hidden state
 #' @param gamma estimated gamma matrix from previous estimation
-#' @param sigma estimated sigma vector from previous estimation
+#' @param delta estimated delta vector from previous estimation
 #' @param theta estimated theta values from previous estimation
 #' @param multi parameter that checks, wether the function is used for multiple thetas or not 
 #' 
@@ -21,7 +21,7 @@
 
 
 
-decode <- function(x, m, L1, L2, L3=NULL, L4=NULL, L5=NULL, gamma,sigma,theta,multi=FALSE){
+decode <- function(x, m, L1, L2, L3=NULL, L4=NULL, L5=NULL, gamma,delta,theta,multi=FALSE){
   
   #conducting the probability vector 
   
@@ -83,7 +83,7 @@ decode <- function(x, m, L1, L2, L3=NULL, L4=NULL, L5=NULL, gamma,sigma,theta,mu
   N <- length (x)
   set<-seq(1,m*N-N+1, length.out = m)
   
-  out <- alpha_function( m, N, sigma, gamma, p, set)
+  out <- alpha_function( m, N, delta, gamma, p, set)
   alpha <- out[[1]]
   weight <- out[[2]]
   
@@ -118,14 +118,14 @@ decode <- function(x, m, L1, L2, L3=NULL, L4=NULL, L5=NULL, gamma,sigma,theta,mu
   
   etha <- matrix (,nrow=N,ncol=m)
   
-  #etha_1_i = sigma_i * p_i(x1)
+  #etha_1_i = delta_i * p_i(x1)
   #thus again we use the simple scalar multiplication
   
   #Note, that again we use the normalization to tackle the problem of underflow
   # with the weight w 
   
   #t=1 
-  w <- sigma*p[set]
+  w <- delta*p[set]
   etha[1,] <- w/sum(w)
   
   #for higher t we have to calculate the etha by taking the max previous one : 
