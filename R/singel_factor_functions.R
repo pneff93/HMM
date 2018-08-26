@@ -32,10 +32,12 @@
 #' The underlying functions are the HMM2 for the EM-Algorithm and the HMM3 for the Direct Maximisation
 #'
 #' @import stats
-#' @seealso [multifactorHMM()]
+#' @seealso For Hidden Markov Models with multiple thetas in their Likelihood, please refer to \code{\link{multifactorHMM}} 
 #'
 #' @export
-#'
+#' 
+#' @example examples/Norm_threeStates.R
+#' 
 HMM<-function(x, m,method="DM", L1, L2, L3=NULL, L4=NULL, L5=NULL, iterations=NULL, DELTA=NULL,decoding=FALSE){
 
 #This is the head function, which seperates between the methods:

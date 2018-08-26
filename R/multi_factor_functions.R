@@ -37,10 +37,17 @@
 #' The underlying functions are the multiHMM2 for the EM-Algorithm and the multiHMM3 for the Direct Maximisation
 #'
 #'@import stats
-#'@seealso [HMM()]
+#'
+#'@seealso For Hidden Markov Models with only one theta per likelihood, please refer to \code{\link{HMM}} 
 #'
 #'
 #' @export
+#' 
+#' 
+#' 
+#' @example examples/multi_Norm_threeStates.R
+#' 
+#' 
 #'
 multifactorHMM<-function(x,theta, m,method="DM", L1, L2, L3=NULL, L4=NULL, L5=NULL, iterations=NULL, DELTA=NULL,decoding=FALSE){
   

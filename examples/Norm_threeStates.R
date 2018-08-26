@@ -1,11 +1,10 @@
-##RESULTS:
-#Both methods need some estimation time but estimate the parameters well
-
+################
+#First: Generating the sample of the HMM with the true following true values:
 
 #transition matrix
 gamma<-matrix(c(0.9,0.05,0.05,
                 0.1,0.4,0.5,
-                0.3,0.5,0.2), byrow=T, nrow=3)
+                0.3,0.5,0.2), byrow=TRUE, nrow=3)
 
 #initial state probabilities
 delta<-c(0.5, 0.3, 0.2)
@@ -13,6 +12,11 @@ delta<-c(0.5, 0.3, 0.2)
 #sample size
 n<- 500
 
+
+#number of states 
+m<-3
+
+#sampling from Normaliy distribution with different mu's but same sigma's:
 x<-c()
 set.seed(100)
 s1<-rnorm(10000, 7, 1)
@@ -24,13 +28,13 @@ s3<-rnorm(10000, 12, 1)
 random_number<-runif(1, 0, 1)
 
 if (random_number < delta[1]){
-  x[1]<-sample(s1, 1, replace = F)
+  x[1]<-sample(s1, 1, replace = FALSE)
   p<-1
 } else if (random_number < sum(delta[1:2]) && random_number > delta[1]) {
-  x[1]<-sample(s2, 1, replace = F)
+  x[1]<-sample(s2, 1, replace = FALSE)
   p<-2
 } else {
-  x[1]<-sample(s3, 1, replace = F)
+  x[1]<-sample(s3, 1, replace = FALSE)
   p<-3
 }
 
@@ -39,15 +43,21 @@ for (i in 2:n){
   random_number<-runif(1, 0, 1)
   if (random_number < gamma[p,1]){
     p<-1
-    x[i]<-sample(s1, 1, replace = F)
+    x[i]<-sample(s1, 1, replace = FALSE)
   } else if(random_number < sum(gamma[p,1:2]) && random_number > gamma[p,1]) {
     p<-2
-    x[i]<-sample(s2, 1, replace = F)
+    x[i]<-sample(s2, 1, replace = FALSE)
   } else {
     p<-3
-    x[i]<-sample(s3, 1, replace = F)
+    x[i]<-sample(s3, 1, replace = FALSE)
   }
 }
+
+#Display of the sample
+hist(x)
+
+################
+#Second: Defining the likelihoods.
 
 
 #likelihoods
@@ -66,12 +76,10 @@ L3<-function(x, mu){
   return(p3)
 }
 
+################
+#Third: Executing the two HMM functions
 
-
-m<-3
-
-
-HMM(x=x,m=m,method="EM",L1=L1,L2=L2,L3=L3,decoding = TRUE)
+HMM(x=x,m=m,method="EM",L1=L1,L2=L2,L3=L3,decoding=TRUE)
 
 HMM(x=x,m=m,method="DM",L1=L1,L2=L2,L3=L3,decoding=TRUE)
 
