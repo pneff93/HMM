@@ -7,31 +7,40 @@
 trans(factor, m)
 }
 \arguments{
-\item{factor}{see details}
+\item{factor}{vector of unrestricted}
 
 \item{m}{number of Likelihoods}
 }
 \value{
-returns a matrix with the delta,Gamma and theta matrix bound together (collumn wise)
+List of Delta, Gamma, Theta
 }
 \description{
-Due to our single optimation problem we have to build constrains for Gamma and
-delta to fullfill the requirements of probabilties.
+The transformation function transforms a non-restricted parameter
+vector into a restricted delta, Gamma and Theta output.
 }
 \details{
-In the direct maximisation the nlme()- minimisation function can not directly implement
-the constrains of the parameter values. This function ensures that the the estimated parameters 
-of the direct optimisation still fullfill their requirements. These are that the probabilities are
-between zero and one and that the rows of gamma (as well as delta) sum up to one.
-For this transformation the logit model is used. 
+In the direct maximisation the nlme()- minimisation function can not 
+directly implement the constrains of the parameter values. 
+This function ensures that the the estimated parameters of the direct 
+optimisation still fullfill their requirements. The requirements are that all
+probabilities are between zero and one and that the rows of Gamma (as well as
+the vector Delta) sum up to one. For this transformation the logit model is 
+used. 
 
-Thus with the input factor containing the elements that determine delta and Gamma we need 
-the following number of elements for each parameter:
+From the input vector factor, the elements are extracted as followe and used 
+for transformation: 
 
-delta vector (1 x m)  - (m-1)  elements required
-Gamma matrix (m x m)  - m(m-1) elements required
-Theta vector (1 x m)  - m      elements required
+Delta vector (1 x m): The logit transformation requires (m-1)  elements, thus 
+the first (m-1) elements of the factor vector are used. 
+ 
+Gamma matrix (m x m): The logit transformation requires per row (m-1) elements
+thus in total m(m-1) elements required. Accordingly the elements from index 
+m til (m+1)(m-1) are extracted from the factor vector 
 
-By this defintion the input factor vector has to contain the elements for delta, Gamma and Theta
-in that order and has to have the dimension: (m+1)(m-1) + m
+Theta vector: Due to the fact that the trans() function can be used both from 
+the single and multifactor Direct Maximisation the Theta vector has no pre-
+defined lenght, but needs to have at least the length of m (thus each 
+likelihood has at least one parameter). 
+
+The resulting Delta,Gamma and Theta values are returned as a single list
 }

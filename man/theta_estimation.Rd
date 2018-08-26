@@ -14,7 +14,7 @@ theta_estimation(m, N, u, x, theta, L1, L2, L3 = NULL, L4 = NULL,
 
 \item{u}{output matrix of the u_function}
 
-\item{x}{a sample of a Mixed Model}
+\item{x}{a sample of a Hidden Markov Model}
 
 \item{theta}{theta vector}
 
@@ -32,11 +32,13 @@ theta_estimation(m, N, u, x, theta, L1, L2, L3 = NULL, L4 = NULL,
 returns the corresponding likelihood
 }
 \description{
-This function calculates part of the global log-likelihood that is only dependend 
-on the theta value. Due to its proportionality, it is therefore optimal for the maximisation 
-of the theta-values and will be used by the EM-algorithm.
+This function calculates part of the global log-likelihood that
+is only dependend on the theta value. Due to its proportionality, it is 
+therefore optimal for the maximisation of the theta-values and will be used 
+by the EM-algorithm.
 }
 \details{
-For more detailed explanation we recommend the source Hidden Markov Models for Times Series
-by Walter Zucchini, Iain MacDonald & Roland Langrock, especially page 72.
+For more detailed explanation we recommend the source Hidden
+Markov Models for Times Series by Walter Zucchini, Iain MacDonald & Roland
+Langrock, especially page 72.
 }

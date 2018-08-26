@@ -7,9 +7,10 @@
 multiHMM3(x, theta, m, L1, L2, L3, L4, L5)
 }
 \arguments{
-\item{x}{a sample of a Mixed Model}
+\item{x}{a sample of a Hidden Markov Model}
 
-\item{theta}{initial parameters for the estimation of the likelihood parameters. See details for more information.}
+\item{theta}{initial parameters for the estimation of the likelihood 
+parameters. See details for more information.}
 
 \item{m}{the number of states}
 
@@ -24,18 +25,30 @@ multiHMM3(x, theta, m, L1, L2, L3, L4, L5)
 \item{L5}{optional. likelihood of the 5th hidden state}
 }
 \value{
-The estimated parameters are rounded by 3 decimals and returned in a list.
+The estimated parameters are rounded by 3 decimals and returned in a 
+list.
 }
 \description{
-Estimation of the transition probabilites, the initial state probabilites and the hidden state parameters of a Hidden Markov Model
-by using the Direct Maximisation of the likelihoods.
+Estimation of the transition probabilites,  
+the initial state probabilites and the hidden state parameters of a Hidden 
+Markov Model by using the Direct Maximisation of the global log-likelihood.
 }
 \details{
-This function estimates the Hidden Markov states by maximising the normalized log-likelihood
-of the forward probabilities. Due to the fact that bot the Gamma-matrix as well as the delta-vector
-have some constraints, the function includes the restrictions within the function.
+This function estimates the Hidden Markov states by maximising the 
+normalized log-likelihood of the forward propabilities. Due to the fact that
+both the Gamma-matrix as well as the Delta-vector have some constraints, the 
+function first applies some restrictions and then uses the base-R maximisation
+to gain the most likely variables. 
 
-For each individual likelihood an initial starting parameter has to be set in order to compute the estimation of the corresponding
-Thetas. Each groupe of parameters is placed in a seperate element of the theta list as a vector e.g.:
-theta[[i]] <- c(parameter1,parameter2,...)
+This function is able to calculate with multiple Theta values for the 
+individual likelihoods. For each likelihood the right number initial starting
+parameter has to be set in order to compute the estimation of the 
+corresponding Thetas.
+For each Likelihood the starting values must be in the format of a vector, 
+which is then saved as a list element. 
+
+e.g.: theta[[i]] <- c(parameter1, parameter2, ...)
+
+The function then extracts the right number of parameters per likelihood and 
+optimizes the values.
 }

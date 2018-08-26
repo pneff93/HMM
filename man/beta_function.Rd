@@ -4,7 +4,7 @@
 \alias{beta_function}
 \title{Normalized Backward Probability function}
 \usage{
-beta_function(m, N, Gamma, p, set, c)
+beta_function(m, N, Gamma, p, set, weight)
 }
 \arguments{
 \item{m}{number of likelihoods}
@@ -17,15 +17,15 @@ beta_function(m, N, Gamma, p, set, c)
 
 \item{set}{index vector to align the p vector}
 
-\item{c}{weights provided by the alpha calculation}
+\item{weight}{weights provided by the alpha calculation}
 }
 \value{
 Returns the beta as a matrix with the dimensions m as rows
 and the datapoints t as columns.
 }
 \description{
-This function calculates the normalized backward probability of the HMM states. It is important
-to recall, that the provided weights come from the calculation of the forward probabilities one step ahead and
-have to be entered as factor c 
+This function calculates the normalized backward probability 
+of the HMM states. For this the function needs the weights of the forward
+probability, which have to be inputed as parameter weight. 
 In the general literatur also revered to as beta matrix.
 }

@@ -4,12 +4,13 @@
 \alias{multiLH}
 \title{Likelihood of the Hidden Markov Model}
 \usage{
-multiLH(factor, x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL, set2)
+multiLH(factor, x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
+  start_index)
 }
 \arguments{
 \item{factor}{Input of variables that are unrestricted}
 
-\item{x}{a sample of a Mixed Model}
+\item{x}{a sample of a Hidden Markov Model}
 
 \item{m}{the number of states}
 
@@ -23,18 +24,31 @@ multiLH(factor, x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL, set2)
 
 \item{L5}{optional. likelihood of the 5th hidden state}
 
-\item{set2}{index parameter to control the number of theta inputs}
+\item{start_index}{index parameter to assign the Thetas to their corresponding 
+individual hidden state likelihood.}
 }
 \value{
 negative Likelihood
 }
 \description{
-Direct likelihood of the multi-variate HMM
+This function calculates the log-likelihood of the HMM mode.
+For this, the scaled forward probabilities are computed. In respect of the LH
+function, the multiLH function incorporates the multi Thetas for the 
+indivudal likelihoods
 }
 \details{
-This function computes the log-likelihood of the forward probabilities of the HMM given the factor values
-Due to the fact that the delta and Gamma matrices are in a form restricted, the transformation function is used to 
-transform the factor variables in suitable canidates. 
+This function computes the log-likelihood of the forward 
+probabilities of the HMM. Given the fact that the inputed factor vector is 
+not restricted, we need to apply a transformation to transform the factor
+variables to our suitable canditates Delta,Gamma and Theta. For this we apply 
+the function trans().
 
-The likelihood is constructed with normalizing the alpha vectors.
+The likelihood is constructed using the scaling/normalizing of the forward 
+probabilities such that for each time point the sum of the foward probabily is
+equal to one. The scaling is neccesary to tackle the underflow problem, that 
+arrises with an increasing sample size.
+
+The multiLH function only differes in the computation of the likelihood 
+probability vector p, because we imput multiple Thetas in the corresponding 
+individual likelihoods.
 }

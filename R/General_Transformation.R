@@ -1,40 +1,53 @@
 #' Transformation function - DM
 #' 
-#' @description Due to our single optimation problem we have to build constrains for Gamma and
-#' delta to fullfill the requirements of probabilties. 
-
+#' @description The transformation function transforms a non-restricted parameter
+#' vector into a restricted delta, Gamma and Theta output.  
 #' 
-#' @param factor see details
+#' @param factor vector of unrestricted 
 #' @param m number of Likelihoods 
 #' 
-#' @details In the direct maximisation the nlme()- minimisation function can not directly implement
-#' the constrains of the parameter values. This function ensures that the the estimated parameters 
-#' of the direct optimisation still fullfill their requirements. These are that the probabilities are
-#' between zero and one and that the rows of gamma (as well as delta) sum up to one.
-#' For this transformation the logit model is used. 
+#' @details In the direct maximisation the nlme()- minimisation function can not 
+#' directly implement the constrains of the parameter values. 
+#' This function ensures that the the estimated parameters of the direct 
+#' optimisation still fullfill their requirements. The requirements are that all
+#' probabilities are between zero and one and that the rows of Gamma (as well as
+#' the vector Delta) sum up to one. For this transformation the logit model is 
+#' used. 
 #' 
-#' Thus with the input factor containing the elements that determine delta and Gamma we need 
-#' the following number of elements for each parameter:
+#' From the input vector factor, the elements are extracted as followe and used 
+#' for transformation: 
 #' 
-#' delta vector (1 x m)  - (m-1)  elements required
-#' Gamma matrix (m x m)  - m(m-1) elements required
-#' Theta vector (1 x m)  - m      elements required
+#' Delta vector (1 x m): The logit transformation requires (m-1)  elements, thus 
+#' the first (m-1) elements of the factor vector are used. 
+#'  
+#' Gamma matrix (m x m): The logit transformation requires per row (m-1) elements
+#' thus in total m(m-1) elements required. Accordingly the elements from index 
+#' m til (m+1)(m-1) are extracted from the factor vector 
 #' 
-#' By this defintion the input factor vector has to contain the elements for delta, Gamma and Theta
-#' in that order and has to have the dimension: (m+1)(m-1) + m
+#' Theta vector: Due to the fact that the trans() function can be used both from 
+#' the single and multifactor Direct Maximisation the Theta vector has no pre-
+#' defined lenght, but needs to have at least the length of m (thus each 
+#' likelihood has at least one parameter). 
 #' 
-#'
+#' The resulting Delta,Gamma and Theta values are returned as a single list 
 #' 
-#' @return returns a matrix with the delta,Gamma and theta matrix bound together (collumn wise)
+#' 
+#' 
+#' 
+#' @return List of Delta, Gamma, Theta
+#' 
 #' 
 #' 
 
 
 
-trans <- function (factor,m){
-  # Building the constrains: 
-  #delta via logit transformation:
-  #with delta[1] <- exp(factor[1])/(1+exp(factor[1]))
+trans <- function (factor, m){
+  ##########################
+  #Transformation Delta-vector
+  
+  #Building the constrains for Delta via logit transformation:
+  # delta[i] <- exp(factor[i])/sum(1+exp(factor)) for i = 1 - (m-1)
+  # delta[m] <- 1/sum(1+exp(factor))
   
   delta <-c()
   div <- 1 + sum(exp(factor[1:(m-1)]))
@@ -43,38 +56,60 @@ trans <- function (factor,m){
   }
   delta[m] <- 1/div
   
-  #Building restrictions on Gamma
-  #for i =! j.
-  #As example for m=3 
+  
+  ##########################
+  #Transformation Gamma-matrix
+  
+  #Building restrictions on Gamma we extract therefore the next m(m-1) elements
+  #of factor; so the elements: (m-1)+1 = m till (m-1)+m(m-1) = (m+1)(m-1)
+ 
+  #For the Gamma matrix we determine the off-diagonal elements: 
+  
+  #for i =! j: 
+  #exp(factor[i])/sum(1+exp(factor))
+  #for i == j 
+  #1/sum(1+exp(factor))
+  
+  #As example for m = 3 
   # ( --- tau12 tau13)
   # (tau21 ---  tau23)
   # (tau31 tau32 ---)
+
   
-  #we extract therefore the next m(m-1) elements of factor 
-  #so the elements:  (m-1)+1=m till (m-1)+m(m-1)=(m+1)(m-1)
-  x <- matrix(factor[m:((m+1)*(m-1))],ncol=(m-1),nrow=m,byrow=T)
+  #Recall that each rowsum has to be equal to one 
+  #The variable count ensures that only the off-diagonal elements are calculated
+  #with the factor vector 
+  
+  x <- matrix(factor[m:((m+1)*(m-1))], ncol = (m-1), nrow = m, byrow = TRUE)
   
   
-  gamma <- matrix(,nrow=m,ncol=m)
+  gamma <- matrix(, nrow = m, ncol = m)
   
   for (i in 1:m){
-    div <- 1+sum(exp(x[i,]))
+    div <- 1+sum(exp(x[i, ]))
     count <- 0
     
     for (j in 1:m){
       if(i==j){ 
-        gamma[i,j] <- 1/div
+        gamma[i, j] <- 1/div
       } else {
         count <- count + 1
-        #we need a counter to asign the right values from x 
-        gamma[i,j]<- exp(x[i,count])/div
+        gamma[i, j]<- exp(x[i, count])/div
       }
     }
   }
   
-
+  ##########################
+  #Transformation Theta-values
+  
+  
+  #The Theta values are not manipulated and are just stored in an individual 
+  #vector 
+  
   theta <- factor[((m-1)*(m+1)+1):length(factor)]
-  return(list(delta,gamma,theta))}
+  
+  
+  return(list(delta, gamma, theta))}
 
 
 

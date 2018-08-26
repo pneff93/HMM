@@ -8,7 +8,7 @@ HMM2(x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
   iterations = NULL, DELTA = NULL)
 }
 \arguments{
-\item{x}{a sample of a Mixed Model}
+\item{x}{a sample of a Hidden Markov Model}
 
 \item{m}{the number of states}
 
@@ -27,15 +27,18 @@ HMM2(x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
 \item{DELTA}{optional. stop criterion for the EM-Algorithm}
 }
 \value{
-The estimated parameters are rounded by 3 decimals and returned in a list.
+The estimated parameters are rounded by 3 decimals and returned in a 
+list.
 }
 \description{
-Estimation of the transition probabilites, the initial state probabilites and the hidden state parameters of a Hidden Markov Model
-by using the Baum-Welch Algorithm.
+Estimation of the transition probabilites, the initial state 
+probabilites and the hidden state parameters of a Hidden Markov Model by 
+using the Baum-Welch Algorithm.
 }
 \details{
-This function estimates the hidden states of the Hidden Markov Model with the
-help of the Baum Welch algorithm. The function iteratively applies both estimation and
-maximisation steps to arrive at the predicted parameters. When the maximum difference between
-the functions is abitrarily small (see DELTA) the iteration stops.
+This function estimates the hidden states of the Hidden Markov Model
+with the help of the Baum Welch algorithm. The function iteratively applies 
+both estimation and maximisation steps to arrive at the predicted parameters.
+When the maximal difference between present and prior parameter is abitrarily 
+small (defined with DELTA) the iteration stops.
 }

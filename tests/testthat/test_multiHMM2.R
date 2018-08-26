@@ -30,7 +30,7 @@ test_that("Differents multiple theta inputs",{
   #theta3 is a list but has not the right amount of parameters, thus should retur an error
   theta3 <- list(1,c(0,1))
   
-  output1 <- multiHMM2(x=z,theta1,m=2,L1,L2)
+  output1 <- multiHMM2(x=z,theta=theta1,m=2,L1,L2)
   
   #theta1
   #The estimated thetas should be the same and have a mu =0.5 and delta=0.5 
@@ -40,7 +40,7 @@ test_that("Differents multiple theta inputs",{
   
   #theta2
   #note that we suppress the warnings, because the statement causes both error and warnings 
-  expect_error(suppressWarnings(multiHMM2(x=z,theta2,m=2,L1,L2))) 
+  expect_error(suppressWarnings(multiHMM2(x=z,theta=theta2,m=2,L1,L2))) 
   #theta3
-  expect_error(suppressWarnings(multiHMM2(x=z,theta3,m=2,L1,L2)))
+  expect_error(suppressWarnings(multiHMM2(x=z,theta=theta3,m=2,L1,L2)))
 })

@@ -9,13 +9,14 @@ multifactorHMM(x, theta, m, method = "DM", L1, L2, L3 = NULL,
   decoding = FALSE)
 }
 \arguments{
-\item{x}{a sample of a Mixed Model}
+\item{x}{sample of a Hidden Model}
 
 \item{theta}{list with initial number of Likelihood parameters (see details)}
 
 \item{m}{the number of states}
 
-\item{method}{choose between two different methods: "DM" as default, alternative "EM"}
+\item{method}{choose between two different methods: "DM" as default, 
+alternative "EM"}
 
 \item{L1}{likelihood of the first hidden state}
 
@@ -31,34 +32,54 @@ multifactorHMM(x, theta, m, method = "DM", L1, L2, L3 = NULL,
 
 \item{DELTA}{optional. stop criterion for the EM-Algorithm}
 
-\item{decoding}{if parameter set TRUE the function returns the most probable paths via local and global decoding}
+\item{decoding}{if parameter set TRUE the function returns the most 
+probable paths via local and global decoding}
 }
 \value{
-The estimated parameters are rounded by 3 decimals and returned in a list
+Returns the Delta vector, Gamma matrix and the Thetas of the
+Likelihoods rounded by three decimals. If "EM" is selected the function also
+returns the number of iterations and the DELTA.
 }
 \description{
-Estimation of the transition probabilites, the initial state probabilites and the hidden state parameters of a Hidden Markov Model
-by using the Direct Maximisation of the likelihood or the EM-Algorithm.
+Estimation of the transition probabilites, the initial state 
+probabilites and the hidden state parameters of a Hidden Markov Model 
+by using the Direct Maximisation of the likelihood or the Baum-Welch 
+Algorithm
 }
 \details{
-This package is designed to estimate the hidden states of a HMM-Model, given the underlying likelihoods
-of each state. It is important to support at least two likelihoods (L1, L2) for the function, which both
-depend on multiple unkown thetas.
+This package is designed to estimate the hidden states of a HMM-Model, given
+the underlying likelihoods of each state. It is important to support at
+least two likelihoods (L1, L2) for the function, which both depend on
+multiple unkown thetas. See examples for a suitable structur of the
+likelihood
 
-For each individual likelihood a starting parameter has to be set in order to compute the estimation of the corresponding
-Thetas. Each groupe of parameters is placed in a seperate element of the theta list as a vector e.g.:
-theta[[i]] <- c(parameter1,parameter2,...)
+The multifactorHMM() function is able to calculate with multiple Theta values
+for the individual likelihoods. For each likelihood the right number initial
+starting parameter has to be set, in order to compute the estimation of the 
+corresponding Thetas.
+For each Likelihood the starting values must be in the format of a vector, 
+which is then saved as a list element. 
 
-In the method parameter the underlying estimation function is selected. With DM the HMM-function will
-estimate the parameters via a direct maximisation of the given likelihoods.
-If EM is selected the HMM-function will use a Baum-Welch estimation algorithm to compute the different states and the
-estimation of the underlying parameters.
+e.g.: theta[[i]] <- c(parameter1, parameter2, ...)
 
-For more detailed explanation we recommend the source Hidden Markov Models for Times Series
-by Walter Zucchini, Iain MacDonald & Roland Langrock.
+The function then extracts the right number of parameters per likelihood and 
+optimizes the values. 
 
 
-The underlying functions are the multiHMM2 for the EM-Algorithm and the multiHMM3 for the Direct Maximisation
+
+Choose with "method" the underlying estimation function. If DM is selected, 
+the HMM-function will estimate the parameters via a direct maximisation of 
+the given likelihoods.
+If EM is selected the HMM-function will use a Baum-Welch estimation algorithm
+to compute the different states and the estimation of the underlying 
+parameters.
+
+For more detailed explanation we recommend the source Hidden Markov Models 
+for Times Series by Walter Zucchini, Iain MacDonald & Roland Langrock.
+
+
+The underlying functions are the multiHMM2 for the EM-Algorithm and the 
+multiHMM3 for the Direct Maximisation
 }
 \examples{
 ################
@@ -154,5 +175,6 @@ multifactorHMM(x=x,theta=theta1,m=m,method="DM",L1=L1,L2=L2,L3=L3,decoding = TRU
 
 }
 \seealso{
-For Hidden Markov Models with only one theta per likelihood, please refer to \code{\link{HMM}}
+For Hidden Markov Models with only one theta per likelihood, please
+refer to \code{\link{HMM}}
 }

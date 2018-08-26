@@ -19,8 +19,8 @@ u_function(m, N, alpha, beta)
 returns the corresponding normalized u's
 }
 \description{
-This function calculates the u-function which is part of the estimation step.
-Each element in u aligns with the conditional expectation to
-reach state j given your datapoint x(t). The corresponding weights are already included in the
-alpha and beta values.
+This function calculates the u-function which is part of the 
+estimation step. Each element in u aligns with the conditional expectation to
+reach state j given your datapoint x(t). The corresponding weights are 
+already included in the alpha and beta values.
 }

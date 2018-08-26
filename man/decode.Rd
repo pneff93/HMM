@@ -8,7 +8,7 @@ decode(x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL, gamma, delta,
   theta, multi = FALSE)
 }
 \arguments{
-\item{x}{a sample of a Mixed Model}
+\item{x}{a sample of a Hidden Markov Model}
 
 \item{m}{the number of states}
 
@@ -22,15 +22,15 @@ decode(x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL, gamma, delta,
 
 \item{L5}{optional. likelihood of the 5th hidden state}
 
-\item{gamma}{estimated gamma matrix from previous estimation}
+\item{gamma}{estimated Gamma matrix from previous estimation}
 
-\item{delta}{estimated delta vector from previous estimation}
+\item{delta}{estimated Delta vector from previous estimation}
 
-\item{theta}{estimated theta values from previous estimation}
+\item{theta}{estimated Theta values from previous estimation}
 
-\item{multi}{parameter that checks, wether the function is used for multiple thetas or not}
+\item{multi}{parameter. TRUE if multifactor HMM() is used}
 }
 \description{
-Calculation of local and global decoding given the dataset and the 
-coresponding parameters of the HMM
+Calculation of local and global decoding given the dataset and
+the coresponding parameters of the HMM
 }

@@ -31,10 +31,10 @@ test_that("multiLH function control",{
     
     factor1 <- c(0,0,0,1,1,1,1)
     factor2 <- c(0,0,0,1,1,1,1)
-    set2_1 <-c(1,3,5) 
+    start_index_1 <-c(1,3,5) 
     
-    expect_equal(round(multiLH(factor = factor1,m=2,x=c(1,1,0,0),L1,L2,set2 = set2_1),4), 4.6758)
-    expect_equal(round(multiLH(factor = factor2,m=2,x=c(1,1,1,1),L1,L2,set2=set2_1),4), 3.6758)
+    expect_equal(round(multiLH(factor = factor1,m=2,x=c(1,1,0,0),L1,L2,start_index = start_index_1),4), 4.6758)
+    expect_equal(round(multiLH(factor = factor2,m=2,x=c(1,1,1,1),L1,L2,start_index=start_index_1),4), 3.6758)
     
     
     

@@ -8,11 +8,12 @@ HMM(x, m, method = "DM", L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
   iterations = NULL, DELTA = NULL, decoding = FALSE)
 }
 \arguments{
-\item{x}{a sample of a Mixed Model}
+\item{x}{sample of a Hidden Markov Model}
 
 \item{m}{the number of states}
 
-\item{method}{choose between two different methods: "DM" as default, alternative "EM"}
+\item{method}{choose between two different methods: "DM" as default, 
+alternative "EM"}
 
 \item{L1}{likelihood of the first hidden state}
 
@@ -28,30 +29,40 @@ HMM(x, m, method = "DM", L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
 
 \item{DELTA}{optional. stop criterion for the EM-Algorithm}
 
-\item{decoding}{if parameter set TRUE the function returns the most propable paths via local and global decoding}
+\item{decoding}{if parameter set TRUE the function returns the most probable
+paths via local and global decoding}
 }
 \value{
-The estimated parameters are rounded by 3 decimals and returned in a list
+Returns the Delta vector, Gamma matrix and the Thetas of the
+Likelihoods rounded by three decimals. If "EM" is selected the function also
+returns the number of iterations and the DELTA.
 }
 \description{
-Estimation of the transition probabilites, the initial state probabilites and the hidden state parameters of a Hidden Markov Model
-by using the Direct Maximisation of the likelihood or the EM-Algorithm.
+Estimation of the transition probabilites, the initial state 
+probabilites and the hidden state parameters of a Hidden Markov Model
+by using the Direct Maximisation of the likelihood or the Baum-Welch 
+Algorithm#'
 }
 \details{
-This package is designed to estimate the hidden states of a HMM-Model, given the underlying likelihoods
-of each state. It is important to support at least two likelihoods (L1, L2) for the function, which both
-depend on one unknown parameter theta.
+This package is designed to estimate the hidden states of a HMM-Model, given 
+the underlying likelihoods of each state. It is important to support at least
+two likelihoods (L1, L2) for the function, which both
+depend on one unknown parameter theta.See examples for a suitable structur
+of the likelihoods.
 
-In the method parameter the underlying estimation function is selected. With DM the HMM-function will
-estimate the parameters via a direct maximisation of the given likelihoods.
-If EM is selected the HMM-function will use a Baum-Welch estimation algorithm to compute the different states and the
-estimation of the underlying parameters.
+Choose with "method" the underlying estimation function. If DM is selected, 
+the HMM-function will estimate the parameters via a direct maximisation of 
+the given likelihoods.
+If EM is selected the HMM-function will use a Baum-Welch estimation algorithm
+to compute the different states and the estimation of the underlying 
+parameters.
 
-For more detailed explanation we recommend the source Hidden Markov Models for Times Series
-by Walter Zucchini, Iain MacDonald & Roland Langrock.
+For more detailed explanation we recommend the source Hidden Markov Models 
+for Times Series by Walter Zucchini, Iain MacDonald & Roland Langrock.
 
 
-The underlying functions are the HMM2 for the EM-Algorithm and the HMM3 for the Direct Maximisation
+The underlying functions are the HMM2 for the EM-Algorithm and the HMM3 for 
+the Direct Maximisation
 }
 \examples{
 ################
@@ -141,5 +152,6 @@ HMM(x=x,m=m,method="DM",L1=L1,L2=L2,L3=L3,decoding=TRUE)
 
 }
 \seealso{
-For Hidden Markov Models with multiple thetas in their Likelihood, please refer to \code{\link{multifactorHMM}}
+For Hidden Markov Models with multiple thetas in their Likelihood,
+please refer to \code{\link{multifactorHMM}}
 }
