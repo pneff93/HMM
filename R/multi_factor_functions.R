@@ -45,7 +45,7 @@
 #' 
 #' 
 #' 
-#' @example examples/multi_Norm_threeStates.R
+#' @example R/examples/multi_Norm_threeStates.R
 #' 
 #' 
 #'

@@ -36,7 +36,7 @@
 #'
 #' @export
 #' 
-#' @example examples/Norm_threeStates.R
+#' @example R/examples/Norm_threeStates.R
 #' 
 HMM<-function(x, m,method="DM", L1, L2, L3=NULL, L4=NULL, L5=NULL, iterations=NULL, DELTA=NULL,decoding=FALSE){
 
