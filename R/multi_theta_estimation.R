@@ -1,9 +1,10 @@
 #' Multi Theta Estimation function
 #'
-#' @description This function calculates the third part of the overall likelihood function. 
-#' This likelihood part focusses on the hidden states parameters and will be optimized later on.
-#' It is estimated as a sum over all time periods and states of the vector u times the corresponding log-likelihood.
-#'
+#' @description This function calculates part of the global log-likelihood that is only dependend 
+#' on the theta value. Due to its proportionality, it is therefore optimal for the maximisation 
+#' of the theta-values and will be used by the EM-algorithm. 
+#' For the multiHMM2(), small changes where made to calculate the index of the theta-values right.
+#' 
 #' @param m number of likelihoods
 #' @param N length of the supplied dataset
 #' @param u output matrix of the u_function
@@ -16,15 +17,33 @@
 #' @param L5 optional. likelihoods of the 5th hidden state
 #' @param set2 index paramter to assign the right amount of thetas to the likelihoods 
 #'
+#'@details For more detailed explanation we recommend the source Hidden Markov Models for Times Series
+#' by Walter Zucchini, Iain MacDonald & Roland Langrock, especially page 72.
+#'
+#'
 #' @return returns the corresponding likelihood
 #'
 
 
 multi_theta_estimation<-function( m, N, u, x, theta, L1, L2, L3=NULL, L4=NULL, L5=NULL,set2 ){
   
+  #For each state, the individual likelihood is logarithmized an summed with 
+  #the coresponding u-vector over all timepoints. 
+  #The contributions of the states are then added together to a global likelihood that needs to be maximized 
+  
+  #Due to the fact that the maximization is dependen on the number of likelihoods
+  #we query for the given number of states 
+  
+  #The index set2 is used to rightly identify the first and the last theta-value of the 
+  #grouping vector theta.
+  #Because the number of likelihood can be between two and five, the set2-index needs always 
+  # one starting value more than neccesary. 
+  
+  
+  
   l3<-0
   
-  p1<-L1(x, theta[set2[1]:(set2[2]-1)])
+
   
   #For the first likelihood
   l3 <- l3 + u[,1]%*%(log(L1(x,theta[set2[1]:(set2[2]-1)])))
