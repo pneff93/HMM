@@ -36,7 +36,7 @@
 #' The function then extracts the right number of parameters per likelihood and 
 #' optimizes the values. 
 
-multiHMM2 <- function( x, theta, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
+multi_HMM_EM <- function( x, theta, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
                     iterations = NULL, DELTA = NULL ){
   
 

@@ -37,7 +37,7 @@
 #' 
 
 
-multiHMM3 <- function( x, theta,  m,  L1, L2, L3, L4, L5 ){
+multi_HMM_DM <- function( x, theta,  m,  L1, L2, L3, L4, L5 ){
   
   #The definition of the likelihood is in a seperate R-file to reduce complexity
   #of the code. It can be found under multi_LH.R

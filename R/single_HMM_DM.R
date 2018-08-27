@@ -24,7 +24,7 @@
 #'
 
 
-HMM3<-function( x, m, L1, L2, L3, L4, L5 ){
+HMM_DM<-function( x, m, L1, L2, L3, L4, L5 ){
 
   #The definition of the likelihood is in a seperate R-file to reduce complexity
   #of the code. It can be found under single_LH.R

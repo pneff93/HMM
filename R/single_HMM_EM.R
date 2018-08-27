@@ -28,7 +28,7 @@
 
 
 
-HMM2 <- function( x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
+HMM_EM <- function( x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
                   iterations = NULL, DELTA = NULL ){
 
   ##########################

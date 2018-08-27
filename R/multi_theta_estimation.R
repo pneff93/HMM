@@ -3,7 +3,7 @@
 #' @description This function calculates part of the global log-likelihood that 
 #' is only dependent on the Theta value. Due to its proportionality, it is 
 #' therefore optimal for the maximisation of the Theta values and will be used 
-#' by the EM-algorithm. For the multiHMM2(), small changes where made to 
+#' by the EM-algorithm. For the multi_HMM_EM(), small changes where made to 
 #' calculate the index of the Theta alues right.
 #' 
 #' @param m number of likelihoods
@@ -40,7 +40,7 @@ multi_theta_estimation <- function( m, N, u, x, theta, L1, L2, L3 = NULL,
   #we query for the given number of states 
   
   #The index start_index is used to rightly identify the first and the last 
-  #theta-value of the grouping vector Theta (see description in multiHMM2())
+  #theta-value of the grouping vector Theta (see description in multi_HMM_EM())
 
   l3<-0
   

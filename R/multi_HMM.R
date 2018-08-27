@@ -55,13 +55,13 @@
 #' for Times Series by Walter Zucchini, Iain MacDonald & Roland Langrock.
 #'
 #'
-#' The underlying functions are the multiHMM2 for the EM-Algorithm and the 
-#' multiHMM3 for the Direct Maximisation.
+#' The underlying functions are the multi_HMM_EM for the EM-Algorithm and the 
+#' multi_HMM_DM for the Direct Maximisation.
 #'
 #'@import stats
 #'
 #'@seealso For Hidden Markov Models with only one theta per likelihood, please
-#'refer to \code{\link{HMM}} 
+#'refer to \code{\link{single_HMM}} 
 #'
 #'
 #' @export
@@ -78,7 +78,7 @@ multifactorHMM <- function( x, theta, m, method = "DM", L1, L2, L3 = NULL,
   
   #This is the head function, which seperates between the methods:
   if (method == "DM"){
-    output <- multiHMM3( x = x, theta = theta, m = m, L1 = L1, L2 = L2, L3 = L3,
+    output <- multi_HMM_DM( x = x, theta = theta, m = m, L1 = L1, L2 = L2, L3 = L3,
                         L4 = L4, L5 = L5 )
     
     #Decoding
@@ -90,7 +90,7 @@ multifactorHMM <- function( x, theta, m, method = "DM", L1, L2, L3 = NULL,
     }
     return(output)
   } else if (method  == "EM"){
-    output <- multiHMM2( x = x, theta = theta, m = m, L1 = L1, L2 = L2, L3 = L3,
+    output <- multi_HMM_EM( x = x, theta = theta, m = m, L1 = L1, L2 = L2, L3 = L3,
                         L4 = L4, L5 = L5, iterations = iterations,
                         DELTA = DELTA )
     

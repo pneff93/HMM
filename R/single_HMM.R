@@ -42,12 +42,12 @@
 #' for Times Series by Walter Zucchini, Iain MacDonald & Roland Langrock.
 #'
 #'
-#' The underlying functions are the HMM2 for the EM-Algorithm and the HMM3 for 
+#' The underlying functions are the HMM_EM for the EM-Algorithm and the HMM_DM for 
 #' the Direct Maximisation
 #' 
 #' @import stats
 #' @seealso For Hidden Markov Models with multiple thetas in their Likelihood,
-#' please refer to \code{\link{multifactorHMM}} 
+#' please refer to \code{\link{multi_HMM}} 
 #'
 #' @export
 #' 
@@ -58,7 +58,7 @@ HMM <- function( x, m, method = "DM", L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
 
 #This is the head function, which seperates between the methods:
   if (method == "DM"){
-    output <- HMM3( x = x, m = m, L1 = L1, L2 = L2, L3 = L3, L4 = L4, L5 = L5 )
+    output <- HMM_DM( x = x, m = m, L1 = L1, L2 = L2, L3 = L3, L4 = L4, L5 = L5 )
     
     #Decoding:
     if (decoding == TRUE){
@@ -69,7 +69,7 @@ HMM <- function( x, m, method = "DM", L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
     }
     return(output)
   } else if (method == "EM"){
-    output <- HMM2( x = x, m = m, L1 = L1, L2 = L2, L3 = L3, L4 = L4, L5 = L5,
+    output <- HMM_EM( x = x, m = m, L1 = L1, L2 = L2, L3 = L3, L4 = L4, L5 = L5,
                    iterations = iterations, DELTA = DELTA )
     
     #Decoding:
