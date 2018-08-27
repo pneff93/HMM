@@ -51,7 +51,7 @@ This package is designed to estimate the hidden states of a HMM-Model, given
 the underlying likelihoods of each state. It is important to support at
 least two likelihoods (L1, L2) for the function, which both depend on
 multiple unkown thetas. See examples for a suitable structur of the
-likelihood
+likelihood.
 
 The multifactorHMM() function is able to calculate with multiple Theta values
 for the individual likelihoods. For each likelihood the right number initial
@@ -79,7 +79,7 @@ for Times Series by Walter Zucchini, Iain MacDonald & Roland Langrock.
 
 
 The underlying functions are the multiHMM2 for the EM-Algorithm and the 
-multiHMM3 for the Direct Maximisation
+multiHMM3 for the Direct Maximisation.
 }
 \examples{
 ################
@@ -143,7 +143,7 @@ hist(x)
 #Second: Defining the likelihoods.
 
 #To show complexity the first likelihood only requires one parameter,
-#while the other two need two. Theta is allways a vector 
+#while the other two need two. Theta is always a vector 
 
 L1<-function(x, theta){
   mu <- theta 

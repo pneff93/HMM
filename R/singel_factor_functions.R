@@ -1,8 +1,9 @@
 #' Fitting a Hidden Markov Model
+#' 
 #' @description Estimation of the transition probabilites, the initial state 
 #' probabilites and the hidden state parameters of a Hidden Markov Model
 #' by using the Direct Maximisation of the likelihood or the Baum-Welch 
-#' Algorithm#' 
+#' Algorithm 
 #' @param x sample of a Hidden Markov Model 
 #' @param m the number of states
 #' @param method choose between two different methods: "DM" as default, 
@@ -27,7 +28,7 @@
 #' This package is designed to estimate the hidden states of a HMM-Model, given 
 #' the underlying likelihoods of each state. It is important to support at least
 #' two likelihoods (L1, L2) for the function, which both
-#' depend on one unknown parameter theta.See examples for a suitable structur
+#' depend on one unknown parameter Theta. See examples for a suitable structur
 #' of the likelihoods.
 #'
 #' Choose with "method" the underlying estimation function. If DM is selected, 
@@ -52,30 +53,30 @@
 #' 
 #' @example R/examples/Norm_threeStates.R
 #' 
-HMM<-function(x, m, method = "DM", L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
-              iterations = NULL, DELTA = NULL,decoding = FALSE){
+HMM <- function( x, m, method = "DM", L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
+              iterations = NULL, DELTA = NULL,decoding = FALSE ){
 
 #This is the head function, which seperates between the methods:
   if (method == "DM"){
-    output <- HMM3(x = x, m = m, L1 = L1, L2 = L2, L3 = L3, L4 = L4, L5 = L5)
+    output <- HMM3( x = x, m = m, L1 = L1, L2 = L2, L3 = L3, L4 = L4, L5 = L5 )
     
     #Decoding:
     if (decoding == TRUE){
-      dec <-decode(x = x, m = m, L1 = L1, L2 = L2, L3 = L3, L4 = L4, L5 = L5,
+      dec <- decode( x = x, m = m, L1 = L1, L2 = L2, L3 = L3, L4 = L4, L5 = L5,
                    gamma = output$Gamma, delta = output$Delta, 
-                   theta = output$Theta, multi = FALSE)
+                   theta = output$Theta, multi = FALSE )
       output <- (append(output, dec)) 
     }
     return(output)
   } else if (method == "EM"){
-    output <- HMM2(x = x, m = m, L1 = L1, L2 = L2, L3 = L3, L4 = L4, L5 = L5,
-                   iterations = iterations, DELTA = DELTA)
+    output <- HMM2( x = x, m = m, L1 = L1, L2 = L2, L3 = L3, L4 = L4, L5 = L5,
+                   iterations = iterations, DELTA = DELTA )
     
     #Decoding:
     if (decoding == TRUE){
-      dec <-decode(x = x, m = m, L1 = L1, L2 = L2, L3 = L3, L4 = L4, L5 = L5,
+      dec <- decode( x = x, m = m, L1 = L1, L2 = L2, L3 = L3, L4 = L4, L5 = L5,
                    gamma = output$Gamma, delta = output$Delta,
-                   theta = output$Theta, multi = FALSE)
+                   theta = output$Theta, multi = FALSE )
       output <- append(output, dec)
     } 
     

@@ -18,15 +18,15 @@
 #' 
 #' @details This function estimates the Hidden Markov states by maximising the 
 #' normalized log-likelihood of the forward propabilities. Due to the fact that
-#' both the Gamma-matrix as well as the Delta-vector have some constraints, the 
+#' both the Gamma matrix as well as the Delta vector have some constraints, the 
 #' function first applies some restrictions and then uses the base-R maximisation
 #' to gain the most likely variables. 
 #'
 
 
-HMM3<-function(x, m, L1, L2, L3, L4, L5){
+HMM3<-function( x, m, L1, L2, L3, L4, L5 ){
 
-  #The definition of the Likelihood is in a seperate R-file to reduce complexity
+  #The definition of the likelihood is in a seperate R-file to reduce complexity
   #of the code. It can be found under single_LH.R
   
   
@@ -40,8 +40,8 @@ HMM3<-function(x, m, L1, L2, L3, L4, L5){
   #model 
 
   factor <- c()
-  factor[1:(m-1)] <- log((1/m)/(1-(m-1)*(1/m)))
-  factor[m:((m+1)*(m-1))] <-(log((1/m)/(1-(m-1)*(1/m))))
+  factor[1:(m-1)] <- log((1/m) / (1-(m-1)*(1/m)))
+  factor[m:((m+1)*(m-1))] <- (log((1/m) / (1-(m-1)*(1/m))))
   
   #Theta
   #The starting values of the Theta values are the quantiles of the distribution
@@ -49,21 +49,21 @@ HMM3<-function(x, m, L1, L2, L3, L4, L5){
 
   #quantile defintion vector
   s <- seq(0, 1, length.out = m+2)[c(-1, -(m+2))]
-  factor[((m-1)*(m+1)+1):((m-1)*(m+1)+m)]<-quantile(x, s)
+  factor[((m-1)*(m+1)+1):((m-1)*(m+1)+m)] <- quantile(x, s)
 
   
   ##########################
   #Maximisation 
   
-  #We maximize the log-likelihood with nlminb
+  #We maximize the log-likelihood with nlminb()
   #Depending on the number of likelihoods
   if (m==2){
-   factor_out<- nlminb(start = factor, LH, x = x, m = m, L1 = L1, L2 = L2)$par
+   factor_out <- nlminb(start = factor, LH, x = x, m = m, L1 = L1, L2 = L2)$par
   } else if (m==3) {
-  factor_out<- nlminb(start = factor, LH, x = x, m = m, L1 = L1, L2 = L2,
+  factor_out <- nlminb(start = factor, LH, x = x, m = m, L1 = L1, L2 = L2,
                       L3 = L3)$par
   } else if (m==4) {
-  factor_out<- nlminb(start = factor, LH, x = x, m = m, L1 = L1, L2 = L2,
+  factor_out <- nlminb(start = factor, LH, x = x, m = m, L1 = L1, L2 = L2,
                       L3 = L3, L4 = L4)$par
   } else if (m==5) {
   factor_out<- nlminb(start = factor, LH, x = x, m = m, L1 = L1, L2 = L2, 

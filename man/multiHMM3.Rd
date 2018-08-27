@@ -36,7 +36,7 @@ Markov Model by using the Direct Maximisation of the global log-likelihood.
 \details{
 This function estimates the Hidden Markov states by maximising the 
 normalized log-likelihood of the forward propabilities. Due to the fact that
-both the Gamma-matrix as well as the Delta-vector have some constraints, the 
+both the Gamma matrix as well as the Delta vector have some constraints, the 
 function first applies some restrictions and then uses the base-R maximisation
 to gain the most likely variables. 
 
