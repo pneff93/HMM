@@ -1,13 +1,13 @@
-context("multiHMM3 Test control")
+context("multi_HMM_DM Test control")
 
-#This test section is for controlling the multiHMM3 function. 
+#This test section is for controlling the multi_HMM_DM function. 
 #We do not control the trans-function, because this is already taken 
 #care of in the HMM3-test.
 
 
-#First test is about the multiLH function 
+#First test is about the multi_LH function 
 
-test_that("multiLH function control", {
+test_that("multi_LH function control", {
   
     #We use the same likelihoods as the mulitHMM2 test function.
     #with a fixed set of parameters we expect to gain the same result for the 
@@ -33,9 +33,9 @@ test_that("multiLH function control", {
     factor2 <- c(0, 0, 0, 1, 1, 1, 1)
     start_index_1 <- c(1, 3, 5) 
     
-    expect_equal(round(multiLH(factor = factor1, m = 2, x = c(1, 1, 0, 0), L1, 
+    expect_equal(round(multi_LH(factor = factor1, m = 2, x = c(1, 1, 0, 0), L1, 
                                L2, start_index = start_index_1), 4), 4.6758)
-    expect_equal(round(multiLH(factor = factor2, m = 2, x = c(1, 1, 1, 1), L1, 
+    expect_equal(round(multi_LH(factor = factor2, m = 2, x = c(1, 1, 1, 1), L1, 
                                L2, start_index = start_index_1), 4), 3.6758)
     
     
@@ -43,8 +43,8 @@ test_that("multiLH function control", {
 })
   
 
-  #Testing for the wrong input in the multiHMM3 function, thus if not list is 
-  #provided same test format like the multiHMM2 test file 
+  #Testing for the wrong input in the multi_HMM_DM function, thus if not list is 
+  #provided same test format like the multi_HMM_EM test file 
 
 test_that("Differents multiple theta inputs", {
     z <- c(0, 0, 1, 1)
@@ -72,7 +72,7 @@ test_that("Differents multiple theta inputs", {
     #thus should retur an warning
     theta3 <- list(1, c(0, 1))
     
-    output1 <- multiHMM3(x = z, theta1, m = 2, L1, L2)
+    output1 <- multi_HMM_DM(x = z, theta1, m = 2, L1, L2)
     
 
     
@@ -88,7 +88,7 @@ test_that("Differents multiple theta inputs", {
     
     
     #theta2
-    expect_warning(multiHMM3(x = z, theta2, m = 2, L1, L2)) 
+    expect_warning(multi_HMM_DM(x = z, theta2, m = 2, L1, L2)) 
     #theta3 
-    expect_warning(multiHMM3(x = z, theta3, m = 2, L1, L2))
+    expect_warning(multi_HMM_DM(x = z, theta3, m = 2, L1, L2))
 })

@@ -4,8 +4,8 @@ test_that("Test if the decoding estimates the right proberties", {
   
   z <- c(0, 0, 10, 10, 0, 10)
   
-  L1<-function(x, mu){
-    p1<-1/sqrt(2*pi)*exp(-0.5*(x-mu)^2)
+  L1 <- function(x, mu){
+    p1 <- 1/sqrt(2*pi) * exp(-0.5*(x-mu)^2)
     return(p1)
   }
   

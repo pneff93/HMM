@@ -59,8 +59,8 @@ theta1
 m <- 2
 
 
-multifactorHMM(x = x, theta = theta1, m = m, method = "EM",
+multi_HMM(x = x, theta = theta1, m = m, method = "EM",
                L1 = L1, L2 = L2, decoding = TRUE)
-multifactorHMM(x = x, theta = theta1, m = m, method = "DM",
+multi_HMM(x = x, theta = theta1, m = m, method = "DM",
                L1 = L1, L2 = L2, decoding = TRUE)
 

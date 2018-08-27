@@ -30,7 +30,7 @@
 #' multiple unkown thetas. See examples for a suitable structur of the
 #' likelihood.
 #' 
-#' The multifactorHMM() function is able to calculate with multiple Theta values
+#' The multi_HMM() function is able to calculate with multiple Theta values
 #' for the individual likelihoods. For each likelihood the right number initial
 #' starting parameter has to be set, in order to compute the estimation of the 
 #' corresponding Thetas.
@@ -72,7 +72,7 @@
 #' 
 #' 
 #'
-multifactorHMM <- function( x, theta, m, method = "DM", L1, L2, L3 = NULL,
+multi_HMM <- function( x, theta, m, method = "DM", L1, L2, L3 = NULL,
                          L4 = NULL, L5 = NULL, iterations = NULL,
                          DELTA = NULL, decoding = FALSE ){
   

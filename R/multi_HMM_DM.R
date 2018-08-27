@@ -40,7 +40,7 @@
 multi_HMM_DM <- function( x, theta,  m,  L1, L2, L3, L4, L5 ){
   
   #The definition of the likelihood is in a seperate R-file to reduce complexity
-  #of the code. It can be found under multi_LH.R
+  #of the code. It can be found under multi_LH
   
   
   ##########################
@@ -94,16 +94,16 @@ multi_HMM_DM <- function( x, theta,  m,  L1, L2, L3, L4, L5 ){
   #We maximize the log-likelihood with nlminb()
   #Depending on the number of likelihoods
   if (m==2){
-    factor_out <- nlminb(start = factor, multiLH, x = x, m = m, L1 = L1, L2 = L2,
+    factor_out <- nlminb(start = factor, multi_LH, x = x, m = m, L1 = L1, L2 = L2,
                         start_index = start_index)$par
   } else if (m==3) {
-    factor_out <- nlminb(start = factor, multiLH, x = x, m = m, L1 = L1, L2 = L2,
+    factor_out <- nlminb(start = factor, multi_LH, x = x, m = m, L1 = L1, L2 = L2,
                         L3 = L3, start_index = start_index)$par
   } else if (m==4) {
-    factor_out<- nlminb(start = factor, multiLH, x = x, m = m, L1 = L1, L2 = L2, 
+    factor_out<- nlminb(start = factor, multi_LH, x = x, m = m, L1 = L1, L2 = L2, 
                         L3 = L3, L4 = L4, start_index = start_index)$par
   } else if (m==5) {
-    factor_out <- nlminb(start = factor, multiLH, x = x, m = m, L1 = L1, L2 = L2,
+    factor_out <- nlminb(start = factor, multi_LH, x = x, m = m, L1 = L1, L2 = L2,
                         L3 = L3, L4 = L4, L5 = L5,
                         start_index = start_index)$par
   }

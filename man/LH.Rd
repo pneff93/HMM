@@ -28,13 +28,13 @@ negative Likelihood
 }
 \description{
 This function calculates the log-likelihood of the HMM mode.
-For this, the scaled forward probabilities are computed
+For this, the scaled forward probabilities are computed.
 }
 \details{
 This function computes the log-likelihood of the forward 
 probabilities of the HMM. Given the fact that the inputed factor vector is 
 not restricted, we need to apply a transformation to transform the factor
-variables to our suitable canditates Delta,Gamma and Theta. For this we apply 
+variables to our suitable canditates Delta, Gamma and Theta. For this we apply 
 the function trans().
 
 The likelihood is constructed using the scaling/normalizing of the forward 

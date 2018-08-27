@@ -85,9 +85,9 @@ L3 <- function(x, theta){
 #intial estimates of Theta
 theta1 <- list(8, c(1, 1), c(20, 1))
 
-#execution of both multifactorHMM functions, with decoding=TRUE 
-multifactorHMM(x = x, theta = theta1, m = m, method = "EM",
-               L1 = L1, L2 = L2, L3 = L3, decoding = TRUE)
-multifactorHMM(x = x, theta = theta1, m = m, method = "DM",
-               L1 = L1, L2 = L2, L3 = L3, decoding = TRUE)
+#execution of both multi_HMM functions, with decoding=TRUE 
+multi_HMM(x = x, theta = theta1, m = m, method = "EM", 
+          L1 = L1, L2 = L2, L3 = L3, decoding = TRUE)
+multi_HMM(x = x, theta = theta1, m = m, method = "DM",
+          L1 = L1, L2 = L2, L3 = L3, decoding = TRUE)
 

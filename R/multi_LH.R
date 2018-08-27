@@ -2,7 +2,7 @@
 #'
 #' @description This function calculates the log-likelihood of the HMM mode.
 #' For this, the scaled forward probabilities are computed. In respect of the LH
-#' function, the multiLH function incorporates the multi Thetas for the 
+#' function, the multi_LH function incorporates the multi Thetas for the 
 #' indivudal likelihoods. 
 #' 
 #' @param factor Input of variables that are unrestricted
@@ -28,7 +28,7 @@
 #' is equal to one. The scaling is neccesary to tackle the underflow problem, 
 #' that arrises with an increasing sample size.
 #' 
-#' The multiLH function only differes in the computation of the likelihood 
+#' The multi_LH function only differes in the computation of the likelihood 
 #' probability vector p, because we imput multiple Thetas in the corresponding 
 #' individual likelihoods. 
 #' 
@@ -36,7 +36,7 @@
 
 
 
-multiLH <- function( factor, x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
+multi_LH <- function( factor, x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
                      start_index ){
   
   ##########################

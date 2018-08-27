@@ -54,7 +54,7 @@
 #' @example R/examples/Norm_threeStates.R
 #' 
 HMM <- function( x, m, method = "DM", L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
-              iterations = NULL, DELTA = NULL,decoding = FALSE ){
+              iterations = NULL, DELTA = NULL, decoding = FALSE ){
 
 #This is the head function, which seperates between the methods:
   if (method == "DM"){

@@ -16,7 +16,7 @@ multi_theta_estimation(m, N, u, x, theta, L1, L2, L3 = NULL, L4 = NULL,
 
 \item{x}{a sample of a Hidden Markov Model}
 
-\item{theta}{theta vector}
+\item{theta}{Theta vector}
 
 \item{L1}{likelihood of the first hidden state}
 
@@ -36,10 +36,10 @@ returns the corresponding likelihood
 }
 \description{
 This function calculates part of the global log-likelihood that 
-is only dependend on the theta value. Due to its proportionality, it is 
-therefore optimal for the maximisation of the theta-values and will be used 
-by the EM-algorithm. For the multiHMM2(), small changes where made to 
-calculate the index of the theta-values right.
+is only dependent on the Theta value. Due to its proportionality, it is 
+therefore optimal for the maximisation of the Theta values and will be used 
+by the EM-algorithm. For the multi_HMM_EM(), small changes where made to 
+calculate the index of the Theta alues right.
 }
 \details{
 For more detailed explanation we recommend the source Hidden Markov 
