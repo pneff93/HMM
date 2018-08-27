@@ -16,14 +16,14 @@
 #'
 
 
-u_function<-function(m, N, alpha, beta){
+u_function <- function( m, N, alpha, beta ){
 
 
-  u<-matrix(, ncol = m, nrow = N)
+  u <- matrix(, ncol = m, nrow = N)
 
   for (t in 1:N){
     for (j in 1:m){
-      u[t, j]<-(alpha[t, j]%*%t(beta[j, t]))/(alpha[t, ]%*%beta[, t])
+      u[t, j] <- (alpha[t, j] %*% t(beta[j, t])) / (alpha[t, ] %*% beta[, t])
     }
   }
   return(u)

@@ -59,7 +59,7 @@ hist(x)
 #Second: Defining the likelihoods.
 
 #To show complexity the first likelihood only requires one parameter,
-#while the other two need two. Theta is allways a vector 
+#while the other two need two. Theta is always a vector 
 
 L1<-function(x, theta){
   mu <- theta 

@@ -36,8 +36,8 @@
 #' The function then extracts the right number of parameters per likelihood and 
 #' optimizes the values. 
 
-multiHMM2<-function(x, theta, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
-                    iterations = NULL, DELTA = NULL){
+multiHMM2 <- function( x, theta, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
+                    iterations = NULL, DELTA = NULL ){
   
 
   
@@ -46,31 +46,32 @@ multiHMM2<-function(x, theta, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
   
   #Extraction of Thetas
   #Extract the right number of Thetas for each individual likelihood and save 
-  #them in a combined vector theta_hat that will be maximized later
+  #them in a combined vector theta_hat, that will be maximized later
   
   #Additionaly we extract for each likelihood the length of the corresponding 
   #Theta vector and use it to build the index vector start_index. 
   #To later extract not only the starting of the next Theta but also the end of 
-  #the corresponding Theta we add an dummy index as the last element of 
-  #start_index. Thus e.g. to extract the start and end index of the 2. vector we 
-  #compute: 
+  #the corresponding Theta we add a dummy index as the last element of 
+  #start_index. Thus e.g. to extract the start and end index of the second vector
+  #we compute: 
   #start index: start_index[2]
   #end index: start_index[3]-1
   
   
-  theta_hat<-c()
+  theta_hat <- c()
   start_index <- c()
   
   for (i in 1:length(theta)){
     start_index[i] <- length(theta_hat)+1
-    theta_hat <-c(theta_hat, theta[[i]])
+    theta_hat <- c(theta_hat, theta[[i]])
   }
+  
   #dummy index
   start_index[length(start_index)+1] <- length(theta_hat)+1
   
   
   #Gamma
-  Gamma_hat<-matrix(, ncol = m, nrow = m)
+  Gamma_hat <- matrix(, ncol = m, nrow = m)
   Gamma_hat[, ]<-1/m
   
   #Delta
@@ -86,24 +87,24 @@ multiHMM2<-function(x, theta, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
   #We define a treshold of the sample size for every likelihood
   #In the iteration we combine the individual likelihoods to a general 
   #probability vector.
-  set<-seq(1, N*m-N+1, length.out = m)
+  set <- seq(1, N*m-N+1, length.out = m)
   
   ##########################
   #while-loop parameters
   if(is.null(iterations)){
-    z<-500
+    z <- 500
   } else {
-    z<-iterations
+    z <- iterations
   }
   
   if(is.null(DELTA)){
-    d<-0.0001
+    d <- 0.0001
   } else {
-    d<-DELTA
+    d <- DELTA
   }
   
-  q<-1
-  DELTA<-Inf
+  q <- 1
+  DELTA <- Inf
   
   
   ##########################
@@ -112,55 +113,55 @@ multiHMM2<-function(x, theta, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
   
   while (DELTA>d && q<z){
     
-    q<-q+1
+    q <- q+1
     
-    theta<-theta_hat
-    Gamma<-Gamma_hat
-    delta<-delta_hat
+    theta <- theta_hat
+    Gamma <- Gamma_hat
+    delta <- delta_hat
     
     #computation of the individual likelihoods of each state 
     
-    #We combine the individual likelihoods for each timepoint to on general 
+    #We combine the individual likelihoods for each timepoint to a general 
     #probability vector. The index set defines every cut, where a new likelihood
-    #beginns. This measur increase the performance of our calculations 
+    #begins. This measure increases the performance of our calculations 
     #drastically
     
     #Recall that the start_index can show a start and beginning of the
     #corresponding Theta value 
     
-    p1<-L1(x, theta_hat[start_index[1]:(start_index[2]-1)])
-    p2<-L2(x, theta_hat[start_index[2]:(start_index[3]-1)])
-    p<-c(p1, p2)
+    p1 <- L1(x, theta_hat[start_index[1]:(start_index[2]-1)])
+    p2 <- L2(x, theta_hat[start_index[2]:(start_index[3]-1)])
+    p <- c(p1, p2)
     
     if(!is.null(L3)){
-      p3<-L3(x, theta_hat[start_index[3]:(start_index[4]-1)])
-      p<-c(p, p3)
+      p3 <- L3(x, theta_hat[start_index[3]:(start_index[4]-1)])
+      p <- c(p, p3)
     }
     if(!is.null(L4)){
-      p4<-L4(x, theta_hat[start_index[4]:(start_index[5]-1)])
-      p<-c(p, p4)
+      p4 <- L4(x, theta_hat[start_index[4]:(start_index[5]-1)])
+      p <- c(p, p4)
     }
     if(!is.null(L5)){
-      p5<-L5(x, theta_hat[start_index[5]:(start_index[6]-1)])
-      p<-c(p, p5)
+      p5 <- L5(x, theta_hat[start_index[5]:(start_index[6]-1)])
+      p <- c(p, p5)
     }    
    
     ##########################
     #Calculation of forward and backward probability 
     
-    out<-alpha_function(m, N, delta, Gamma, p, set)
+    out <- alpha_function( m, N, delta, Gamma, p, set )
     alpha <- out[[1]]
     weight <- out[[2]]
     
-    beta<-beta_function(m, N, Gamma, p, set, weight = weight )
+    beta <- beta_function( m, N, Gamma, p, set, weight = weight )
     
     
     ##########################
     #Estimation of u and v 
     
-    u<-u_function(m, N, alpha, beta)
+    u <- u_function( m, N, alpha, beta )
     
-    v<-v_function(m, N, beta, p, weight = weight, Gamma, set, u = u)
+    v <- v_function( m, N, beta, p, weight = weight, Gamma, set, u = u )
     
     
     
@@ -168,36 +169,36 @@ multiHMM2<-function(x, theta, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
     #Maximisation
     
     #Delta
-    delta_hat<-delta_hat<-u[1, ]
+    delta_hat <- delta_hat <- u[1, ]
     
     #Gamma
-    f<-apply(v, 2, sum)
-    f<-matrix(f, ncol = m, byrow = N)
+    f <- apply(v, 2, sum)
+    f <- matrix(f, ncol = m, byrow = N)
     
-    Gamma_hat<-matrix(, ncol = m, nrow = m)
+    Gamma_hat <- matrix(, ncol = m, nrow = m)
     
     for (j in 1:m){
-      Gamma_hat[j, ]<-f[j, ]/sum(f[j, ])
+      Gamma_hat[j, ] <- f[j, ] / sum(f[j, ])
     }
     
     #Theta
-    #We maximize the third part of the likelihood with nlminb
+    #We maximize the third part of the likelihood with nlminb()
     #Depending on the number of likelihoods
     
     if(m==2){
-      theta_hat<-nlminb(start = theta, multi_theta_estimation, m = m, N = N,
+      theta_hat <- nlminb(start = theta, multi_theta_estimation, m = m, N = N,
                         u = u, x = x, L1 = L1, L2 = L2,
                         start_index = start_index)$par
     } else if (m==3){
-      theta_hat<-nlminb(start = theta, multi_theta_estimation, m = m, N = N,
+      theta_hat <- nlminb(start = theta, multi_theta_estimation, m = m, N = N,
                         u = u, x = x, L1 = L1, L2 = L2, L3 = L3,
                         start_index = start_index)$par
     } else if (m==4){
-      theta_hat<-nlminb(start = theta, multi_theta_estimation, m = m, N = N,
+      theta_hat <- nlminb(start = theta, multi_theta_estimation, m = m, N = N,
                         u = u, x = x, L1 = L1, L2 = L2, L3 = L3,L4 = L4,
                         start_index = start_index)$par
     } else if (m==5){
-      theta_hat<-nlminb(start = theta, multi_theta_estimation, m = m, N = N,
+      theta_hat <- nlminb(start = theta, multi_theta_estimation, m = m, N = N,
                         u = u, x = x, L1 = L1, L2 = L2, L3 = L3, L4 = L4,
                         L5 = L5, start_index = start_index)$par
       
@@ -208,10 +209,10 @@ multiHMM2<-function(x, theta, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
     
     #We compute the difference between the estimated parameter and the prior 
     #parameter as a stopping condition for the loop. 
-    DELTA1<-max(abs(delta_hat-delta))
-    DELTA2<-max(abs(Gamma_hat-Gamma))
-    DELTA3<-max(abs(theta_hat-theta))
-    DELTA<-max(DELTA1, DELTA2, DELTA3)
+    DELTA1 <- max(abs(delta_hat-delta))
+    DELTA2 <- max(abs(Gamma_hat-Gamma))
+    DELTA3 <- max(abs(theta_hat-theta))
+    DELTA <- max(DELTA1, DELTA2, DELTA3)
     
   }
   
@@ -222,7 +223,7 @@ multiHMM2<-function(x, theta, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
     theta_out[[i]] <- round(theta_hat[start_index[i]:(start_index[i+1]-1)], 3)
   }
   
-  return<-list( "Method of estimation:" = "Maximisation via EM-Algorithm",
+  return <- list( "Method of estimation:" = "Maximisation via EM-Algorithm",
                 Delta = round(delta_hat, 3),
                 Gamma = round(Gamma_hat, 3),
                 Theta = theta_out,

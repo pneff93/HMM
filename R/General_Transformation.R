@@ -1,20 +1,20 @@
 #' Transformation function - DM
 #' 
 #' @description The transformation function transforms a non-restricted parameter
-#' vector into a restricted delta, Gamma and Theta output.  
+#' vector into a restricted Delta, Gamma and Theta output.  
 #' 
-#' @param factor vector of unrestricted 
+#' @param factor vector of unrestricted parameters
 #' @param m number of Likelihoods 
 #' 
-#' @details In the direct maximisation the nlme()- minimisation function can not 
-#' directly implement the constrains of the parameter values. 
-#' This function ensures that the the estimated parameters of the direct 
+#' @details In the direct maximisation the nlminb()- minimisation function can not 
+#' directly implement the constraints of the parameter values. 
+#' This function ensures that the estimated parameters of the direct 
 #' optimisation still fullfill their requirements. The requirements are that all
 #' probabilities are between zero and one and that the rows of Gamma (as well as
 #' the vector Delta) sum up to one. For this transformation the logit model is 
 #' used. 
 #' 
-#' From the input vector factor, the elements are extracted as followe and used 
+#' From the input vector factor, the elements are extracted as follows and used 
 #' for transformation: 
 #' 
 #' Delta vector (1 x m): The logit transformation requires (m-1)  elements, thus 
@@ -22,14 +22,14 @@
 #'  
 #' Gamma matrix (m x m): The logit transformation requires per row (m-1) elements
 #' thus in total m(m-1) elements required. Accordingly the elements from index 
-#' m til (m+1)(m-1) are extracted from the factor vector 
+#' m til (m+1)(m-1) are extracted from the factor vector. 
 #' 
 #' Theta vector: Due to the fact that the trans() function can be used both from 
 #' the single and multifactor Direct Maximisation the Theta vector has no pre-
 #' defined lenght, but needs to have at least the length of m (thus each 
 #' likelihood has at least one parameter). 
 #' 
-#' The resulting Delta,Gamma and Theta values are returned as a single list 
+#' The resulting Delta, Gamma and Theta values are returned as a single list. 
 #' 
 #' 
 #' 
@@ -41,7 +41,7 @@
 
 
 
-trans <- function (factor, m){
+trans <- function( factor, m ){
   ##########################
   #Transformation Delta-vector
   
@@ -49,12 +49,12 @@ trans <- function (factor, m){
   # delta[i] <- exp(factor[i])/sum(1+exp(factor)) for i = 1 - (m-1)
   # delta[m] <- 1/sum(1+exp(factor))
   
-  delta <-c()
+  delta <- c()
   div <- 1 + sum(exp(factor[1:(m-1)]))
   for (i in 1:(m-1)){
-    delta[i] <- exp(factor[i])/div
+    delta[i] <- exp(factor[i]) / div
   }
-  delta[m] <- 1/div
+  delta[m] <- 1 / div
   
   
   ##########################
@@ -94,7 +94,7 @@ trans <- function (factor, m){
         gamma[i, j] <- 1/div
       } else {
         count <- count + 1
-        gamma[i, j]<- exp(x[i, count])/div
+        gamma[i, j] <- exp(x[i, count])/div
       }
     }
   }

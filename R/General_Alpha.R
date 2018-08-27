@@ -21,17 +21,17 @@
 
 
 
-alpha_function<-function( m, N, delta, Gamma, p, set ){
+alpha_function <- function( m, N, delta, Gamma, p, set ){
 
   alpha<-matrix(, ncol = m, nrow = N)
   weight <- c()
-  weight[1] <- sum(t(delta)%*%diag(c(p[set])))
-  alpha[1, ]<-(t(delta)%*%diag(c(p[set])))/weight[1]
+  weight[1] <- sum(t(delta) %*% diag(c(p[set])))
+  alpha[1, ]<-(t(delta) %*% diag(c(p[set]))) / weight[1]
 
   for (t in 2:N){
-    prod <- alpha[t-1, ]%*%Gamma%*%diag(c(p[set+t-1]))
+    prod <- alpha[t-1, ] %*% Gamma %*% diag(c(p[set+t-1]))
     weight[t] <- sum(prod)
-    alpha [t, ] <- prod/weight[t]
+    alpha [t, ] <- prod / weight[t]
   }
   out <- list(alpha, weight)
   return(out)

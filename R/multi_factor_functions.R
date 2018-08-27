@@ -1,4 +1,5 @@
 #' Fitting a Hidden Markov Model to multifactor Likelihoods
+#' 
 #' @description Estimation of the transition probabilites, the initial state 
 #' probabilites and the hidden state parameters of a Hidden Markov Model 
 #' by using the Direct Maximisation of the likelihood or the Baum-Welch 
@@ -27,7 +28,7 @@
 #' the underlying likelihoods of each state. It is important to support at
 #' least two likelihoods (L1, L2) for the function, which both depend on
 #' multiple unkown thetas. See examples for a suitable structur of the
-#' likelihood
+#' likelihood.
 #' 
 #' The multifactorHMM() function is able to calculate with multiple Theta values
 #' for the individual likelihoods. For each likelihood the right number initial
@@ -55,7 +56,7 @@
 #'
 #'
 #' The underlying functions are the multiHMM2 for the EM-Algorithm and the 
-#' multiHMM3 for the Direct Maximisation
+#' multiHMM3 for the Direct Maximisation.
 #'
 #'@import stats
 #'
@@ -71,38 +72,38 @@
 #' 
 #' 
 #'
-multifactorHMM<-function(x, theta, m, method = "DM", L1, L2, L3 = NULL,
+multifactorHMM <- function( x, theta, m, method = "DM", L1, L2, L3 = NULL,
                          L4 = NULL, L5 = NULL, iterations = NULL,
-                         DELTA = NULL, decoding = FALSE){
+                         DELTA = NULL, decoding = FALSE ){
   
   #This is the head function, which seperates between the methods:
   if (method == "DM"){
-    output <- multiHMM3(x = x, theta = theta, m = m, L1 = L1, L2 = L2, L3 = L3,
-                        L4 = L4, L5 = L5)
+    output <- multiHMM3( x = x, theta = theta, m = m, L1 = L1, L2 = L2, L3 = L3,
+                        L4 = L4, L5 = L5 )
     
     #Decoding
     if (decoding==TRUE){
-      dec <-decode(x = x, m = m, L1 = L1, L2 = L2, L3 = L3, L4 = L4, L5 = L5,
+      dec <- decode( x = x, m = m, L1 = L1, L2 = L2, L3 = L3, L4 = L4, L5 = L5,
                    gamma = output$Gamma, delta = output$Delta,
-                   theta = output$Theta, multi = TRUE)
+                   theta = output$Theta, multi = TRUE )
       output <- (append(output, dec)) 
     }
     return(output)
   } else if (method  == "EM"){
-    output <- multiHMM2(x = x, theta = theta, m = m, L1 = L1, L2 = L2, L3 = L3,
+    output <- multiHMM2( x = x, theta = theta, m = m, L1 = L1, L2 = L2, L3 = L3,
                         L4 = L4, L5 = L5, iterations = iterations,
-                        DELTA = DELTA)
+                        DELTA = DELTA )
     
     #Decoding
     if (decoding==TRUE){
-      dec <-decode(x = x, m = m, L1 = L1, L2 = L2, L3 = L3, L4 = L4, L5 = L5,
+      dec <- decode( x = x, m = m, L1 = L1, L2 = L2, L3 = L3, L4 = L4, L5 = L5,
                    gamma = output$Gamma, delta = output$Delta,
-                   theta = output$Theta, multi = TRUE)
+                   theta = output$Theta, multi = TRUE )
       output <- (append(output, dec)) 
     }
     return(output)
   }else {
     warning("The supplied method is not available in the HMM function.
-            Chooose between \"DM\" or \"EM\".", call. = T)
+            Chooose between \"DM\" or \"EM\".", call. = TRUE)
   }
 }

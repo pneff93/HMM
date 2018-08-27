@@ -18,7 +18,7 @@
 #' list.
 #' @details This function estimates the Hidden Markov states by maximising the 
 #' normalized log-likelihood of the forward propabilities. Due to the fact that
-#' both the Gamma-matrix as well as the Delta-vector have some constraints, the 
+#' both the Gamma matrix as well as the Delta vector have some constraints, the 
 #' function first applies some restrictions and then uses the base-R maximisation
 #' to gain the most likely variables. 
 #'
@@ -37,7 +37,7 @@
 #' 
 
 
-multiHMM3<-function(x, theta,  m,  L1, L2, L3, L4, L5){
+multiHMM3 <- function( x, theta,  m,  L1, L2, L3, L4, L5 ){
   
   #The definition of the Likelihood is in a seperate R-file to reduce complexity
   #of the code. It can be found under multi_LH.R
@@ -53,19 +53,19 @@ multiHMM3<-function(x, theta,  m,  L1, L2, L3, L4, L5){
   #Additionaly we extract for each likelihood the length of the corresponding 
   #Theta vector and use it to build the index vector start_index. 
   #To later extract not only the starting of the next Theta but also the end of 
-  #the corresponding Theta we add an dummy index as the last element of 
-  #start_index. Thus e.g. to extract the start and end index of the 2. vector we 
-  #compute: 
+  #the corresponding Theta we add a dummy index as the last element of 
+  #start_index. Thus e.g. to extract the start and end index of the second vector
+  #we compute: 
   #start index: start_index[2]
   #end index: start_index[3]-1
   
 
   start_index <- c()
-  theta_hat <-c()
+  theta_hat <- c()
   
   for (i in 1:length(theta)){
     start_index[i] <- length(theta_hat)+1
-    theta_hat <-c(theta_hat, theta[[i]])
+    theta_hat <- c(theta_hat, theta[[i]])
   }
   #dummy index 
   start_index[length(start_index)+1] <- length(theta_hat)+1
@@ -75,14 +75,14 @@ multiHMM3<-function(x, theta,  m,  L1, L2, L3, L4, L5){
   #Setting starting values
   
   #Delta and Gamma
-  #factor starting value of all Delta and gamma values are 1/m.
-  #Because we transform the starting values in the function LH we  take the 
+  #factor starting value of all Delta and Gamma values are 1/m.
+  #Because we transform the starting values in the function LH we take 
   #the transformation into account with the reverse link function of the logit
   #model 
   
   factor <- c()
-  factor[1:(m-1)] <- log((1/m)/(1-(m-1)*(1/m)))
-  factor[m:((m+1)*(m-1))] <-(log((1/m)/(1-(m-1)*(1/m))))
+  factor[1:(m-1)] <- log((1/m) / (1-(m-1)*(1/m)))
+  factor[m:((m+1)*(m-1))] <- (log((1/m) / (1-(m-1) * (1/m))))
   
   #Theta
   factor <- c(factor, theta_hat)
@@ -91,19 +91,19 @@ multiHMM3<-function(x, theta,  m,  L1, L2, L3, L4, L5){
   ##########################
   #Maximisation
   
-  #We maximize the log-likelihood with nlminb
+  #We maximize the log-likelihood with nlminb()
   #Depending on the number of likelihoods
   if (m==2){
-    factor_out<- nlminb(start = factor, multiLH, x = x, m = m, L1 = L1, L2 = L2,
+    factor_out <- nlminb(start = factor, multiLH, x = x, m = m, L1 = L1, L2 = L2,
                         start_index = start_index)$par
   } else if (m==3) {
-    factor_out<- nlminb(start = factor, multiLH, x = x, m = m, L1 = L1, L2 = L2,
+    factor_out <- nlminb(start = factor, multiLH, x = x, m = m, L1 = L1, L2 = L2,
                         L3 = L3, start_index = start_index)$par
   } else if (m==4) {
     factor_out<- nlminb(start = factor, multiLH, x = x, m = m, L1 = L1, L2 = L2, 
                         L3 = L3, L4 = L4, start_index = start_index)$par
   } else if (m==5) {
-    factor_out<- nlminb(start = factor, multiLH, x = x, m = m, L1 = L1, L2 = L2,
+    factor_out <- nlminb(start = factor, multiLH, x = x, m = m, L1 = L1, L2 = L2,
                         L3 = L3, L4 = L4, L5 = L5,
                         start_index = start_index)$par
   }
@@ -114,7 +114,7 @@ multiHMM3<-function(x, theta,  m,  L1, L2, L3, L4, L5){
   #Transform the maximized values to our Gamma/Delta/Theta and return the output
   out <- trans(factor_out, m)
   theta_hat <- out[[3]]
-  theta_out <-list()
+  theta_out <- list()
   
   for (i in 1:m){
     theta_out[[i]] <- round(theta_hat[start_index[i]:(start_index[i+1]-1)], 3)

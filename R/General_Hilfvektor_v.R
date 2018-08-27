@@ -25,26 +25,26 @@
 
 
 
-v_function<-function( m, N, beta, p, weight, Gamma, set, u){
+v_function <- function( m, N, beta, p, weight, Gamma, set, u ){
 
 
-  v<-matrix(, nrow = 0, ncol = m*m)
-  out<-matrix(, nrow = m, ncol = m)
+  v <- matrix(, nrow = 0, ncol = m*m)
+  out <- matrix(, nrow = m, ncol = m)
 
   for (t in 2:N){
-    pp<-diag(c(p[set+t-1]))
+    pp <- diag(c(p[set+t-1]))
 
     for (i in 1:m){
       for(j in 1:m){
-        out[i, j] <- ((u[t-1, i]*Gamma[i, j]*pp[j, j]*beta[i, t])
-                      /(beta[i, t-1]*weight[t-1]))
+        out[i, j] <- ((u[t-1, i] * Gamma[i, j] * pp[j, j] * beta[i, t])
+                      / (beta[i, t-1] * weight[t-1]))
 
       }
     }
-    v<-c(v, c(t(out)))
+    v <- c(v, c(t(out)))
 
   }
-  v<-matrix(v, nrow = N-1, byrow = N)
+  v <- matrix(v, nrow = N-1, byrow = N)
 
   return(v)
 }

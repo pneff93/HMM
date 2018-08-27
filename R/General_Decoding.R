@@ -20,38 +20,38 @@
 
 
 
-decode <- function(x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL, gamma,
-                   delta, theta, multi = FALSE){
+decode <- function( x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL, gamma,
+                   delta, theta, multi = FALSE ){
   
   ##########################
   #conducting the probability vector 
   
   if (multi==FALSE){
       theta_hat <- theta 
-          p1<-L1(x, theta_hat[1])
-          p2<-L2(x, theta_hat[2])
-          p<-c(p1, p2)
+          p1 <- L1(x, theta_hat[1])
+          p2 <- L2(x, theta_hat[2])
+          p <- c(p1, p2)
           
           if(!is.null(L3)){
-            p3<-L3(x, theta_hat[3])
-            p<-c(p, p3)
+            p3 <- L3(x, theta_hat[3])
+            p <- c(p, p3)
           }
           if(!is.null(L4)){
-            p4<-L4(x, theta_hat[4])
-            p<-c(p, p4)
+            p4 <- L4(x, theta_hat[4])
+            p <- c(p, p4)
           }
           if(!is.null(L5)){
-            p5<-L5(x, theta_hat[5])
-            p<-c(p, p5)
+            p5 <- L5(x, theta_hat[5])
+            p <- c(p, p5)
           }
   } else {
     
-          theta_hat<-c()
+          theta_hat <- c()
           set2 <- c()
           #rewriting the Thetas (see the multi functions for further explanation)
           for (i in 1:length(theta)){
             set2[i] <- length(theta_hat)+1
-            theta_hat <-c(theta_hat, theta[[i]])
+            theta_hat <- c(theta_hat, theta[[i]])
           }
           
           
@@ -59,39 +59,39 @@ decode <- function(x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL, gamma,
           
           #p-Vector :
           
-          p1<-L1(x, theta_hat[set2[1]:(set2[2]-1)])
-          p2<-L2(x, theta_hat[set2[2]:(set2[3]-1)])
-          p<-c(p1, p2)
+          p1 <- L1(x, theta_hat[set2[1]:(set2[2]-1)])
+          p2 <- L2(x, theta_hat[set2[2]:(set2[3]-1)])
+          p <- c(p1, p2)
           
           if(!is.null(L3)){
-            p3<-L3(x, theta_hat[set2[3]:(set2[4]-1)])
-            p<-c(p, p3)
+            p3 <- L3(x, theta_hat[set2[3]:(set2[4]-1)])
+            p <- c(p, p3)
           }
           if(!is.null(L4)){
-            p4<-L4(x, theta_hat[set2[4]:(set2[5]-1)])
-            p<-c(p, p4)
+            p4 <- L4(x, theta_hat[set2[4]:(set2[5]-1)])
+            p <- c(p, p4)
           }
           if(!is.null(L5)){
-            p5<-L5(x, theta_hat[set2[5]:(set2[6]-1)])
-            p<-c(p, p5)
+            p5 <- L5(x, theta_hat[set2[5]:(set2[6]-1)])
+            p <- c(p, p5)
           }    
   }
   
   
   
   ##########################
-  #computing forward and backward prob.
+  #computing forward and backward probabilities
   #computing the alpha and beta matrices and the Likelihood L_T that 
   #is the sum of the weigths at timepoint T
   
-  N <- length (x)
-  set<-seq(1, m*N-N+1, length.out = m)
+  N <- length(x)
+  set <- seq(1, m*N-N+1, length.out = m)
   
-  out <- alpha_function( m, N, delta, gamma, p, set)
+  out <- alpha_function( m, N, delta, gamma, p, set )
   alpha <- out[[1]]
   weight <- out[[2]]
   
-  beta <- beta_function( m, N, gamma, p, set, weight = weight)
+  beta <- beta_function( m, N, gamma, p, set, weight = weight )
  
   
   #L_T is the sum of the last alpha, which is saved in weight[T]
@@ -110,9 +110,9 @@ decode <- function(x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL, gamma,
   #multilpication such that the elements are multiplied with each other.
   #This enhances the performance.
   
-  probmatrix <-matrix(, nrow = N, ncol = m)
+  probmatrix <- matrix(, nrow = N, ncol = m)
   for (i in 1:m){
-  probmatrix[, i] <- alpha[, i]*beta[i, ]/L_T
+  probmatrix[, i] <- alpha[, i] * beta[i, ] /L_T
   }
   
   #for each row we now want the most likely state as return
@@ -126,9 +126,9 @@ decode <- function(x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL, gamma,
   #Global decoding
   
   #Searching for the most likely branch via
-  #Using the viterbi algorithm:
+  #using the viterbi algorithm:
   
-  etha <- matrix (, nrow = N, ncol = m)
+  etha <- matrix(, nrow = N, ncol = m)
   
   #etha_1_i = delta_i * p_i(x1)
   #thus again we use the simple scalar multiplication
@@ -137,8 +137,8 @@ decode <- function(x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL, gamma,
   #with the weight w 
   
   #t = 1 
-  w <- delta*p[set]
-  etha[1, ] <- w/sum(w)
+  w <- delta * p[set]
+  etha[1, ] <- w / sum(w)
   
   
   
@@ -147,13 +147,13 @@ decode <- function(x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL, gamma,
   #for higher t we have to calculate the etha by taking the max previous one : 
   #etha_t_j = (max(etha_t-1_i *gamma_ij)*p_j_(x_t))
   #again with scalar multiplication we get by (etha[i, ]*gamma) the corresponding
-  #matrix and take the max value of each collumn, thus selecting the 
+  #matrix and take the max value of each column, thus selecting the 
   #max (i) for each state j then we multiply each max with the corresponding
   #probability
   
   for ( i in 2:N){
-    w <- apply (etha[(i-1), ]*gamma, 2, max)*p[set+i-1]
-    etha[i, ] <- w/sum(w)
+    w <- apply(etha[(i-1), ]*gamma, 2, max) * p[set+i-1]
+    etha[i, ] <- w / sum(w)
   }
   
   #after computing the etha we now have to reconstruct the optimal path 

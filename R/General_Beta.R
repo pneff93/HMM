@@ -17,13 +17,13 @@
 
 
 
-beta_function<-function( m, N, Gamma, p, set, weight){
+beta_function <- function( m, N, Gamma, p, set, weight ){
 
   beta<-matrix(, ncol = N, nrow = m)
-  beta[, N]<-rep(1, times = m)/weight[N]
+  beta[, N]<-rep(1, times = m) / weight[N]
 
   for (t in (N-1):1){
-    beta[, t] <- Gamma%*%diag(c(p[set+t]))%*%beta[, t+1]/weight[t]
+    beta[, t] <- Gamma %*% diag(c(p[set+t])) %*% beta[, t+1] / weight[t]
     }
 
   return(beta)
