@@ -1,8 +1,8 @@
 context("multiHMM3 Test control")
 
 #This test section is for controlling the multiHMM3 function. 
-#We do not controll the trans-function, because this is already taken 
-#care of in the HMM3-test
+#We do not control the trans-function, because this is already taken 
+#care of in the HMM3-test.
 
 
 #First test is about the multiLH function 
@@ -13,25 +13,25 @@ test_that("multiLH function control", {
     #with a fixed set of parameters we expect to gain the same result for the 
     #likelihood every time. factor = c(0, 0, 0, 1, 1), L1 = L2 = normal distr. 
     #with mu = 1, sd = 1 and m = 2, x1 = c(1, 1, 0, 0) and x2 = c(1, 1, 1, 1)
-    #the result should be the similar output like the LH-test from HMM3-test
+    #the result should be the similar output like the LH-test from HMM3-test.
     
-    L1<-function(x, theta){
+    L1 <- function(x, theta){
       mu <- theta[1]
       sd <- theta[2]
-      p1<-1/sqrt(2*pi*(sd^2))*exp(-((x-mu)^2)/(2*sd^2))
+      p1 <- 1/sqrt(2*pi*(sd^2)) * exp(-((x-mu)^2) / (2*sd^2))
       return(p1)
     }
     
-    L2<-function(x,theta){
+    L2 <- function(x,theta){
       mu <- theta[1]
       sd <- theta[2]
-      p2<-1/sqrt(2*pi*(sd^2))*exp(-((x-mu)^2)/(2*sd^2))
+      p2 <- 1/sqrt(2*pi*(sd^2)) * exp(-((x-mu)^2) / (2*sd^2))
       return(p2)
     }
     
     factor1 <- c(0, 0, 0, 1, 1, 1, 1)
     factor2 <- c(0, 0, 0, 1, 1, 1, 1)
-    start_index_1 <-c(1, 3, 5) 
+    start_index_1 <- c(1, 3, 5) 
     
     expect_equal(round(multiLH(factor = factor1, m = 2, x = c(1, 1, 0, 0), L1, 
                                L2, start_index = start_index_1), 4), 4.6758)
@@ -49,17 +49,17 @@ test_that("multiLH function control", {
 test_that("Differents multiple theta inputs", {
     z <- c(0, 0, 1, 1)
     
-    L1<-function(x, theta){
+    L1 <- function(x, theta){
       mu <- theta[1]
       sd <- theta[2]
-      p1<-1/sqrt(2*pi*(sd^2))*exp(-((x-mu)^2)/(2*sd^2))
+      p1 <- 1/sqrt(2*pi*(sd^2)) * exp(-((x-mu)^2) / (2*sd^2))
       return(p1)
     }
     
-    L2<-function(x,theta){
+    L2 <- function(x,theta){
       mu <- theta[1]
       sd <- theta[2]
-      p2<-1/sqrt(2*pi*(sd^2))*exp(-((x-mu)^2)/(2*sd^2))
+      p2 <- 1/sqrt(2*pi*(sd^2)) * exp(-((x-mu)^2) / (2*sd^2))
       return(p2)
     }
     
@@ -77,14 +77,14 @@ test_that("Differents multiple theta inputs", {
 
     
     #theta1
-    #The estimated thetas should be the same and have a mu = 0.5 and delta = 0.5 
+    #The estimated Thetas should be the same and have a mu = 0.5 and sigma = 0.5 
     expect_equal(output1$Theta[[1]], c(0.5, 0.5))
     expect_equal(output1$Theta[[2]], c(0.5, 0.5))
     
     
     #compared to the EM-algorithm our code does not produce an error, because 
     #the nlminb() function does not find the right parameters and just returns
-    #the input parameters. BUT it does not produce an error. Only a warning.
+    #the input parameters. BUT it does not produce an error, only a warning.
     
     
     #theta2

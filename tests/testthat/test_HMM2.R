@@ -2,12 +2,12 @@ context("HMM2 Test control")
 
 test_that("Testing the output of the alpha function", {
   #We have to states m = 2 and two x1, x2 thus N = 2
-  #delta and gamma have all propabilities equal to 0.5 
+  #Delta and Gamma have all propabilities equal to 0.5 
   #both states are one time very likely (identity matrix) and one time very 
   #unlikely. We expect that the weighted alpha should be equal to the enitial
-  #gamma matrix 
+  #Gamma matrix 
   
-  delta1 <-matrix(c(0.5, 0.5), nrow = 2)
+  delta1 <- matrix(c(0.5, 0.5), nrow = 2)
   gamma1 <- matrix (c(0.5, 0.5, 0.5, 0.5), 2, 2) 
   p1 <- c(1, 1, 1, 1)
   set1 <- c(1, 3)
@@ -19,7 +19,7 @@ test_that("Testing the output of the alpha function", {
   
   #Now for the fact that they are fully unlikely, we expect NaN due to the fact,
   #that we devide through zero for the weights the first sum is equal to zero
-  #(sums of zero prob.), and the second one should also be NaN
+  #(sums of zero prob.), and the second one should also be NaN.
   p2 <- c(0, 0, 0, 0)
   alpha_test2 <- alpha_function(m = 2, N = 2, delta1, gamma1, p2, set1)
   
@@ -31,7 +31,7 @@ test_that("Testing the output of the alpha function", {
 
 test_that("Output of Beta function", {
   #Same parameters as the alpha function. The weights are set to 1 
-  delta1 <-matrix(c(0.5, 0.5), nrow = 2)
+  delta1 <- matrix(c(0.5, 0.5), nrow = 2)
   gamma1 <- matrix (c(0.5, 0.5, 0.5, 0.5), 2, 2) 
   p1 <- c(1, 1, 1, 1)
   set1 <- c(1, 3)
@@ -48,7 +48,7 @@ test_that("Output u-function and v- function", {
   alpha1 <- matrix (c(0.5, 0.5, 0.5, 0.5), 2, 2) 
   beta1 <- matrix(c(1, 1, 1, 1), 2, 2)
   gamma1 <- matrix (c(0.5, 0.5, 0.5, 0.5), 2, 2) 
-  c1<-c(1, 1)
+  c1 <-c(1, 1)
   p1 <- c(1, 1, 1, 1)
   set1 <- c(1, 3)
   
