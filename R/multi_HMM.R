@@ -61,7 +61,7 @@
 #'@import stats
 #'
 #'@seealso For Hidden Markov Models with only one theta per likelihood, please
-#'refer to \code{\link{single_HMM}} 
+#'refer to \code{\link{HMM}} 
 #'
 #'
 #' @export
