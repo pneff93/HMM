@@ -174,53 +174,78 @@ decode <- function( x, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL, gamma,
   
   question <- (sum(abs(global_path_out-local_path_out)) != 0)
   
-  #plots of local and global decoding if N >= 50
+  output <- list(Local_Decoding = local_path_out,
+              Global_Decoding = global_path_out,
+              "Differences in decoding" = question)
+  
+  ##########################
+  #Add Plot of decoding 
+  
+  #plots of local and global decoding if N >= 100
   #we have to  adapt the state number to its Theta value so that it is
   #on the same scale as the sample
-  if (N >= 50){
+  if (N >= 100){
     
-    x_50 <- x[1:50]
-    x_index <- seq(1, 50)
+    x_100 <- x[1:100]
+    x_index <- seq(1, 100)
     
-    points_local <- local_path_out[1:50]
-    points_global <- global_path_out[1:50]
+    points_local <- local_path_out[1:100]
+    points_global <- global_path_out[1:100]
     
     points_local[points_local == 1] <- theta[[1]][1]
     points_global[points_global == 1] <- theta[[1]][1]
+    right_axis <- theta[[1]][1]
+    
     
     points_local[points_local == 2] <- theta[[2]][1]
     points_global[points_global == 2] <- theta[[2]][1]
+    right_axis <- c(right_axis, theta[[2]][1])
+    axis_name <-c(1,2)
     
     if(m >= 3){
       points_local[points_local == 3] <- theta[[3]][1]
       points_global[points_global == 3] <- theta[[3]][1]
+      right_axis <- c(right_axis, theta[[3]][1])
+      axis_name <-c(1,2,3)
     }
     if(m >= 4){
       points_local[points_local == 4] <- theta[[4]][1]
       points_global[points_global == 4] <- theta[[4]][1]
+      right_axis <- c(right_axis, theta[[4]][1])
+      axis_name <-c(1,2,3,4)
     }
     if(m == 5){
       points_local[points_local == 5] <- theta[[5]][1]
       points_global[points_global == 5] <- theta[[5]][1]
+      right_axis <- c(right_axis, theta[[5]][1])
+      axis_name <-c(1,2,3,4,5)
     }
-
+    #Combine and sort the axis name 
+    names(right_axis) <- axis_name
+    right_axis <- sort(right_axis)
+    
+    
     par(mfrow = c (2, 1))
-    plot_local <- plot(x_index, x_50, type = "l", xlab = "time periods t", 
+    #changes width of plot 
+    par(mar=c(5.1,4.1,4.1,4.1))
+    
+    plot_local <- plot(x_index, x_100, type = "l", xlab = "time periods t", 
                        ylab = "X", main = "Local Decoding of X")
     plot_local <- points(points_local, col = "red", pch = 16)
+    #add right axis incl. name 
+    axis(4,at=right_axis,labels=names(right_axis),col="red")
+    mtext("State",side = 4,line = 2)
     
-    plot_global <- plot(x_index, x_50, type = "l", xlab = "time periods t", 
+    
+    plot_global <- plot(x_index, x_100, type = "l", xlab = "time periods t", 
                        ylab = "X", main = "Global Decoding of X")
     plot_global <- points(points_global, col = "blue", pch = 16)
-    
+  # s.o.
+     axis(4,at=right_axis,labels=names(right_axis),col="blue") 
+     mtext("State",side = 4,line = 2)
   }
   
-  
-  return(list(Local_Decoding = local_path_out,
-              Global_Decoding = global_path_out,
-              "Differences in decoding" = question,
-              "Plot local decoding" = plot_local,
-              "Plot global decoding" = plot_global))
+  return(output)
   }  
   
   
