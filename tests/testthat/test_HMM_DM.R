@@ -1,4 +1,4 @@
-context("HMM3 Test control")
+context("single_HMM_DM Test control")
 
 test_that("Probit Control mit p = 0.5", {
   #Due to the fact that the probit transformation uses the exponential function
@@ -18,8 +18,8 @@ test_that("Control of Likelihood function", {
   #with sd = 1 and m = 2, x1 = c(1, 1, 0, 0) and x2 =c(1, 1, 1, 1)
   expect_equal(round(LH(c(0, 0, 0, 1, 1), m = 2, x = c(1, 1, 0, 0), L1 = dnorm,
                         L2 = dnorm), 4), 4.6758)
-  expect_equal(round(LH(c(0,0,0,1,1),m = 2,x = c(1,1,1,1),L1 = dnorm,L2 = dnorm)
-                     ,4),3.6758)
+  expect_equal(round(LH(c(0,0,0,1,1), m = 2, x = c(1,1,1,1), L1 = dnorm,
+                        L2 = dnorm) ,4),3.6758)
 })
 
 

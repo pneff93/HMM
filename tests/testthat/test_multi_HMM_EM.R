@@ -24,28 +24,28 @@ test_that("Differents multiple theta inputs", {
     return(p2)
   }
   
-  #theta1 is the right starting input for our estimation
-  theta1 <- list(c(0, 1), c(0, 1))
-  #theta2 is not a list, thus should return an error 
-  theta2 <- c(0, 1) 
-  #theta3 is a list but has not the right amount of parameters, thus should 
+  #theta_test_1 is the right starting input for our estimation
+  theta_test_1 <- list(c(0, 1), c(0, 1))
+  #theta_test_2 is not a list, thus should return an error 
+  theta_test_2 <- c(0, 1) 
+  #theta_test_3 is a list but has not the right amount of parameters, thus should 
   #retur an error
-  theta3 <- list(1, c(0, 1))
+  theta_test_3 <- list(1, c(0, 1))
   
-  output1 <- multi_HMM_EM(x = z, theta = theta1, m = 2, L1, L2)
+  output_1 <- multi_HMM_EM(x = z, theta = theta_test_1, m = 2, L1, L2)
   
-  #theta1
+  #theta_test_1
   #The estimated thetas should be the same and have a mu = 0.5 and sigma = 0.5 
-  expect_equal(output1$Theta[[1]], c(0.5, 0.5))
-  expect_equal(output1$Theta[[2]], c(0.5, 0.5))
+  expect_equal(output_1$Theta[[1]], c(0.5, 0.5))
+  expect_equal(output_1$Theta[[2]], c(0.5, 0.5))
   
   
-  #theta2
+  #theta_test_2
   #note that we suppress the warnings, because the statement causes both error 
   #and warnings 
-  expect_error(suppressWarnings(multi_HMM_EM(x = z, theta = theta2, m = 2, L1, 
-                                          L2))) 
-  #theta3
-  expect_error(suppressWarnings(multi_HMM_EM(x = z, theta = theta3, m = 2, L1,
-                                          L2)))
+  expect_error(suppressWarnings(multi_HMM_EM(x = z, theta = theta_test_2, m = 2,
+                                             L1, L2))) 
+  #theta_test_3
+  expect_error(suppressWarnings(multi_HMM_EM(x = z, theta = theta_test_3, m = 2,
+                                             L1, L2)))
 })

@@ -29,14 +29,14 @@ test_that("multi_LH function control", {
       return(p2)
     }
     
-    factor1 <- c(0, 0, 0, 1, 1, 1, 1)
-    factor2 <- c(0, 0, 0, 1, 1, 1, 1)
+    factor_test_1 <- c(0, 0, 0, 1, 1, 1, 1)
+    factor_test_2 <- c(0, 0, 0, 1, 1, 1, 1)
     start_index_1 <- c(1, 3, 5) 
     
-    expect_equal(round(multi_LH(factor = factor1, m = 2, x = c(1, 1, 0, 0), L1, 
-                               L2, start_index = start_index_1), 4), 4.6758)
-    expect_equal(round(multi_LH(factor = factor2, m = 2, x = c(1, 1, 1, 1), L1, 
-                               L2, start_index = start_index_1), 4), 3.6758)
+    expect_equal(round(multi_LH(factor = factor_test_1, m = 2, x = c(1, 1, 0, 0),
+                                L1, L2, start_index = start_index_1), 4), 4.6758)
+    expect_equal(round(multi_LH(factor = factor_test_2, m = 2, x = c(1, 1, 1, 1),
+                                L1, L2, start_index = start_index_1), 4), 3.6758)
     
     
     
@@ -63,23 +63,24 @@ test_that("Differents multiple theta inputs", {
       return(p2)
     }
     
-    #theta1 is the right starting input for our estimation
-    theta1 <- list(c(0, 1), c(0, 1))
+    #theta_test_1 is the right starting input for our estimation
+    theta_test_1 <- list(c(0, 1), c(0, 1))
     
-    #theta2 is not a list, thus should return an warning
-    theta2 <- c(0, 1) 
-    #theta3 is a list but has not the right amount of parameters, 
+    #theta_test_2 is not a list, thus should return an warning
+    theta_test_2 <- c(0, 1) 
+    
+    #theta_test_3 is a list but has not the right amount of parameters, 
     #thus should retur an warning
-    theta3 <- list(1, c(0, 1))
+    theta_test_3 <- list(1, c(0, 1))
     
-    output1 <- multi_HMM_DM(x = z, theta1, m = 2, L1, L2)
+    output_1 <- multi_HMM_DM(x = z, theta_test_1, m = 2, L1, L2)
     
 
     
-    #theta1
+    #theta_test_1
     #The estimated Thetas should be the same and have a mu = 0.5 and sigma = 0.5 
-    expect_equal(output1$Theta[[1]], c(0.5, 0.5))
-    expect_equal(output1$Theta[[2]], c(0.5, 0.5))
+    expect_equal(output_1$Theta[[1]], c(0.5, 0.5))
+    expect_equal(output_1$Theta[[2]], c(0.5, 0.5))
     
     
     #compared to the EM-algorithm our code does not produce an error, because 
@@ -87,8 +88,8 @@ test_that("Differents multiple theta inputs", {
     #the input parameters. BUT it does not produce an error, only a warning.
     
     
-    #theta2
-    expect_warning(multi_HMM_DM(x = z, theta2, m = 2, L1, L2)) 
-    #theta3 
-    expect_warning(multi_HMM_DM(x = z, theta3, m = 2, L1, L2))
+    #theta_test_2
+    expect_warning(multi_HMM_DM(x = z, theta_test_2, m = 2, L1, L2)) 
+    #theta_test_3 
+    expect_warning(multi_HMM_DM(x = z, theta_test_3, m = 2, L1, L2))
 })
