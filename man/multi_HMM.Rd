@@ -64,8 +64,6 @@ e.g.: theta[[i]] <- c(parameter1, parameter2, ...)
 The function then extracts the right number of parameters per likelihood and 
 optimizes the values. 
 
-
-
 Choose with "method" the underlying estimation function. If DM is selected, 
 the HMM-function will estimate the parameters via a direct maximisation of 
 the given likelihoods.

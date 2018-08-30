@@ -1,3 +1,8 @@
+
+################################################################################
+############################## single_HMM ######################################
+
+
 #' Fitting a Hidden Markov Model
 #' 
 #' @description Estimation of the transition probabilites, the initial state 
@@ -18,11 +23,9 @@
 #' @param decoding if parameter set TRUE the function returns the most probable
 #'  paths via local and global decoding
 #' 
-#' 
 #' @return Returns the Delta vector, Gamma matrix and the Thetas of the
 #' Likelihoods rounded by three decimals. If "EM" is selected the function also
 #' returns the number of iterations and the DELTA.
-#' 
 #' 
 #' @details
 #' This package is designed to estimate the hidden states of a HMM-Model, given 
@@ -52,7 +55,9 @@
 #' @export
 #' 
 #' @example R/examples/Norm_threeStates.R
-#' 
+
+
+
 HMM <- function( x, m, method = "DM", L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
               iterations = NULL, DELTA = NULL, decoding = FALSE ){
 

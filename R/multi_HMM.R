@@ -1,3 +1,8 @@
+
+################################################################################
+############################## multi_HMM #######################################
+
+
 #' Fitting a Hidden Markov Model to multifactor Likelihoods
 #' 
 #' @description Estimation of the transition probabilites, the initial state 
@@ -41,8 +46,6 @@
 #' 
 #' The function then extracts the right number of parameters per likelihood and 
 #' optimizes the values. 
-#' 
-#' 
 #'
 #' Choose with "method" the underlying estimation function. If DM is selected, 
 #' the HMM-function will estimate the parameters via a direct maximisation of 
@@ -63,15 +66,12 @@
 #'@seealso For Hidden Markov Models with only one theta per likelihood, please
 #'refer to \code{\link{HMM}} 
 #'
-#'
 #' @export
 #' 
-#' 
-#' 
 #' @example R/examples/multi_Norm_threeStates.R
-#' 
-#' 
-#'
+
+
+
 multi_HMM <- function( x, theta, m, method = "DM", L1, L2, L3 = NULL,
                          L4 = NULL, L5 = NULL, iterations = NULL,
                          DELTA = NULL, decoding = FALSE ){
