@@ -98,6 +98,7 @@ multi_HMM_DM <- function( x, theta,  m,  L1, L2, L3, L4, L5 ){
   #Maximisation
   
   #We maximize the log-likelihood with nlminb()
+  #The multi_LH function can be found beneath this function
   #Depending on the number of likelihoods
   if (m==2){
     factor_out <- nlminb(start = factor, multi_LH, x = x, m = m, L1 = L1, L2 = L2,

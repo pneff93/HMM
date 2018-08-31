@@ -31,10 +31,6 @@
 
 HMM_DM<-function( x, m, L1, L2, L3, L4, L5 ){
 
-  #The definition of the likelihood is in a seperate R-file to reduce complexity
-  #of the code. It can be found under single_LH.R
-  
-  
   ##########################
   #Setting starting values:
   
@@ -61,6 +57,7 @@ HMM_DM<-function( x, m, L1, L2, L3, L4, L5 ){
   #Maximisation 
   
   #We maximize the log-likelihood with nlminb()
+  #The Log-Likelihood can be found below in the LH function 
   #Depending on the number of likelihoods
   if (m==2){
    factor_out <- nlminb(start = factor, LH, x = x, m = m, L1 = L1, L2 = L2)$par

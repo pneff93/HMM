@@ -192,6 +192,7 @@ multi_HMM_EM <- function( x, theta, m, L1, L2, L3 = NULL, L4 = NULL, L5 = NULL,
     #Theta
     #We maximize the third part of the likelihood with nlminb()
     #Depending on the number of likelihoods
+    #The multi_theta_estimation function is below this function in this file 
     
     if(m==2){
       theta_hat <- nlminb(start = theta, multi_theta_estimation, m = m, N = N,
