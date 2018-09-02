@@ -12,7 +12,7 @@ gamma <- matrix(c(0.4, 0.2, 0.4,
 delta <- c(0.5, 0.3, 0.2)
 
 #sample size
-n <- 3000
+n <- 500
 
 x <- c()
 set.seed(100)
@@ -67,7 +67,7 @@ L3 <- function(x, lambda){
   return(p3)
 }
 
-
+hist(x)
 #number of states 
 m <- 3
 
